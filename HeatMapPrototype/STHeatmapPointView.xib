@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4457.9" systemVersion="13A497d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <development version="5000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.9"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeatmapPrototypeController">
+            <connections>
+                <outlet property="pointView" destination="1" id="m6g-on-0AR"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1" customClass="STHeatmapPointView">
+            <rect key="frame" x="0.0" y="0.0" width="32" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="GXn-T2-WC3">
+                    <rect key="frame" x="0.0" y="0.0" width="32" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTK-YA-t2Q">
+                    <rect key="frame" x="9" y="7" width="14" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="GXn-T2-WC3" firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="FOu-q5-6El"/>
+                <constraint firstAttribute="centerX" secondItem="fTK-YA-t2Q" secondAttribute="centerX" id="OJz-gc-vGy"/>
+                <constraint firstItem="GXn-T2-WC3" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="QJa-3W-Q8a"/>
+                <constraint firstItem="fTK-YA-t2Q" firstAttribute="top" secondItem="1" secondAttribute="top" constant="7" id="QLD-YG-xwu"/>
+                <constraint firstItem="GXn-T2-WC3" firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="W7p-Q7-DyG"/>
+                <constraint firstItem="GXn-T2-WC3" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" id="Z2L-Vo-3H8"/>
+                <constraint firstItem="GXn-T2-WC3" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="kDu-VL-dGi"/>
+                <constraint firstItem="GXn-T2-WC3" firstAttribute="top" secondItem="1" secondAttribute="top" id="oRK-KN-2z6"/>
+                <constraint firstItem="GXn-T2-WC3" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" id="pNt-zf-zIN"/>
+                <constraint firstItem="GXn-T2-WC3" firstAttribute="top" secondItem="1" secondAttribute="top" id="rzM-au-Wp8"/>
+            </constraints>
+            <connections>
+                <outlet property="valueLabel" destination="fTK-YA-t2Q" id="z52-du-kyT"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="pin" width="32" height="50"/>
+    </resources>
+</document>
