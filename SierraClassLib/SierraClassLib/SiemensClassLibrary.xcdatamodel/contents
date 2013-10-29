@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13A603" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="STAddress" representedClassName="STAddress" syncable="YES">
+        <attribute name="lat" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lon" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipcode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="city" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STCity" inverseName="addresses" inverseEntity="STCity" syncable="YES"/>
+    </entity>
+    <entity name="STBuilding" representedClassName="STBuilding" syncable="YES">
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="city" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STCity" inverseName="buildings" inverseEntity="STCity" syncable="YES"/>
+        <relationship name="floors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STFloor" inverseName="building" inverseEntity="STFloor" syncable="YES"/>
+    </entity>
+    <entity name="STCity" representedClassName="STCity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="addresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STAddress" inverseName="city" inverseEntity="STAddress" syncable="YES"/>
+        <relationship name="buildings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STBuilding" inverseName="city" inverseEntity="STBuilding" syncable="YES"/>
+        <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="STCountry" inverseName="cities" inverseEntity="STCountry" syncable="YES"/>
+    </entity>
+    <entity name="STCountry" representedClassName="STCountry" syncable="YES">
+        <attribute name="abb" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STCity" inverseName="country" inverseEntity="STCity" syncable="YES"/>
+    </entity>
+    <entity name="STFloor" representedClassName="STFloor" syncable="YES">
+        <attribute name="floorNr" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isGroundFloor" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="relatedFile" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scale" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="building" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STBuilding" inverseName="floors" inverseEntity="STBuilding" syncable="YES"/>
+        <relationship name="points" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STPoint" inverseName="floor" inverseEntity="STPoint" syncable="YES"/>
+    </entity>
+    <entity name="STMeasurement" representedClassName="STMeasurement" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <relationship name="sensor" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STSensor" inverseName="measurements" inverseEntity="STSensor" syncable="YES"/>
+    </entity>
+    <entity name="STPoint" representedClassName="STPoint" syncable="YES">
+        <attribute name="creationSequence" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="csMacAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lattitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pointType" optional="YES" attributeType="Integer 32" syncable="YES"/>
+        <relationship name="accessiblePoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STPoint" inverseName="accessiblePoints" inverseEntity="STPoint" syncable="YES"/>
+        <relationship name="floor" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STFloor" inverseName="points" inverseEntity="STFloor" syncable="YES"/>
+        <relationship name="sensorPoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STSensorPoint" inverseName="point" inverseEntity="STSensorPoint" syncable="YES"/>
+    </entity>
+    <entity name="STSensor" representedClassName="STSensor" syncable="YES">
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="unit" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="measurements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STMeasurement" inverseName="sensor" inverseEntity="STMeasurement" syncable="YES"/>
+    </entity>
+    <entity name="STSensorPoint" representedClassName="STSensorPoint" syncable="YES">
+        <attribute name="imageType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pitch" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="roll" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="yaw" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="measurements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STMeasurement" syncable="YES"/>
+        <relationship name="point" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STPoint" inverseName="sensorPoints" inverseEntity="STPoint" syncable="YES"/>
+        <relationship name="stack" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STStack" syncable="YES"/>
+        <relationship name="wifiNetworks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STWifiNetwork" syncable="YES"/>
+    </entity>
+    <entity name="STStack" representedClassName="STStack" syncable="YES">
+        <attribute name="connection" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="ipAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="macAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="port" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="components" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STStackComponent" syncable="YES"/>
+        <relationship name="point" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STPoint" syncable="YES"/>
+    </entity>
+    <entity name="STStackComponent" representedClassName="STStackComponent" syncable="YES">
+        <attribute name="connectedUid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deviceIdentifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="enumerationType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="firmwareVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hardwareVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="STWifiNetwork" representedClassName="STWifiNetwork" syncable="YES">
+        <attribute name="bitRates" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="encryptionKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="extra" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="frequency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ie" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="macAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="protocol" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quality" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="signalLevel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ssid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="STWifiNetworkScanner" representedClassName="STWifiNetworkScanner" syncable="YES">
+        <attribute name="iface" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="detectedWifiNetworkList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STWifiNetwork" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="STAddress" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STBuilding" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STCity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STCountry" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STFloor" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STMeasurement" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STPoint" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STSensor" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STSensorPoint" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STStack" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STStackComponent" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STWifiNetwork" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STWifiNetworkScanner" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>

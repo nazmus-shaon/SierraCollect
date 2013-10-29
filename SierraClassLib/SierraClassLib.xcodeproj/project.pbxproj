@@ -1,0 +1,594 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A756218181FF19600D9F674 /* STCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A756217181FF19600D9F674 /* STCountry.m */; };
+		0A75621B181FF19600D9F674 /* STPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A75621A181FF19600D9F674 /* STPoint.m */; };
+		0A75621E181FF19600D9F674 /* STFloor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A75621D181FF19600D9F674 /* STFloor.m */; };
+		0A756221181FF19600D9F674 /* STBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A756220181FF19600D9F674 /* STBuilding.m */; };
+		0A756226181FF1B700D9F674 /* STCountry.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A756216181FF19600D9F674 /* STCountry.h */; };
+		0A756227181FF1D000D9F674 /* STBuilding.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A75621F181FF19600D9F674 /* STBuilding.h */; };
+		0A756228181FF1D700D9F674 /* STFloor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A75621C181FF19600D9F674 /* STFloor.h */; };
+		0A756229181FF1E000D9F674 /* STPoint.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A756219181FF19600D9F674 /* STPoint.h */; };
+		0AEC9D7B181FFD6300CB05E3 /* STCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC9D7A181FFD6300CB05E3 /* STCity.m */; };
+		0AEC9D7C181FFD7D00CB05E3 /* STCity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0AEC9D79181FFD6300CB05E3 /* STCity.h */; };
+		A5242B28178D435A0044C0B1 /* STFloor+Sierra.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A9944C178AA04600D76BBE /* STFloor+Sierra.h */; };
+		A5242B29178D435A0044C0B1 /* STAddress.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A99476178AA1B800D76BBE /* STAddress.h */; };
+		A5242B30178D435A0044C0B1 /* STSensor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A99484178AA1B800D76BBE /* STSensor.h */; };
+		A5242B31178D435A0044C0B1 /* STSensorPoint.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A99486178AA1B800D76BBE /* STSensorPoint.h */; };
+		A5242B32178D435A0044C0B1 /* STStack.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A99488178AA1B800D76BBE /* STStack.h */; };
+		A5242B33178D435A0044C0B1 /* STStackComponent.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A9948A178AA1B800D76BBE /* STStackComponent.h */; };
+		A5242B34178D435A0044C0B1 /* STWifiNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A9948C178AA1B800D76BBE /* STWifiNetwork.h */; };
+		A5242B35178D435A0044C0B1 /* STWifiNetworkScanner.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A9948E178AA1B800D76BBE /* STWifiNetworkScanner.h */; };
+		A5D2445A1793339A00191A6F /* STMeasurement.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D244591793339A00191A6F /* STMeasurement.m */; };
+		A5D2445B179333D700191A6F /* STMeasurement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5D244581793339A00191A6F /* STMeasurement.h */; };
+		B4044CD2177AF1D900AB371D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4044CD1177AF1D900AB371D /* Foundation.framework */; };
+		B4044CD7177AF1D900AB371D /* SierraClassLib.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4044CD6177AF1D900AB371D /* SierraClassLib.h */; };
+		B4044CD9177AF1D900AB371D /* SierraClassLib.m in Sources */ = {isa = PBXBuildFile; fileRef = B4044CD8177AF1D900AB371D /* SierraClassLib.m */; };
+		B4044CE0177AF1EC00AB371D /* SiemensClassLibrary.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B4044CDF177AF1EC00AB371D /* SiemensClassLibrary.xcdatamodel */; };
+		B4044D1E177AF61200AB371D /* SiemensClassLibrary.xcdatamodel in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4044CDF177AF1EC00AB371D /* SiemensClassLibrary.xcdatamodel */; };
+		B4044D25177AF66F00AB371D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4044D24177AF66F00AB371D /* CoreFoundation.framework */; };
+		B4044D2B177AF66F00AB371D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4044D29177AF66F00AB371D /* InfoPlist.strings */; };
+		B4044D30177AF6B400AB371D /* SiemensClassLibrary.xcdatamodel in Resources */ = {isa = PBXBuildFile; fileRef = B4044CDF177AF1EC00AB371D /* SiemensClassLibrary.xcdatamodel */; };
+		B4044D4B177C59F300AB371D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4044D4A177C59F300AB371D /* UIKit.framework */; };
+		B4044D56177C5B3800AB371D /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4044D4D177C5B3800AB371D /* LICENSE.txt */; };
+		B4044D57177C5B3800AB371D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B4044D4F177C5B3800AB371D /* NSString+MD5.m */; };
+		B4044D58177C5B3800AB371D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B4044D4F177C5B3800AB371D /* NSString+MD5.m */; };
+		B4044D59177C5B3800AB371D /* PDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4044D51177C5B3800AB371D /* PDFView.m */; };
+		B4044D5A177C5B3800AB371D /* PDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4044D51177C5B3800AB371D /* PDFView.m */; };
+		B4044D5B177C5B3800AB371D /* UIImage+PDF.m in Sources */ = {isa = PBXBuildFile; fileRef = B4044D53177C5B3800AB371D /* UIImage+PDF.m */; };
+		B4044D5C177C5B3800AB371D /* UIImage+PDF.m in Sources */ = {isa = PBXBuildFile; fileRef = B4044D53177C5B3800AB371D /* UIImage+PDF.m */; };
+		B4044D5D177C5B3800AB371D /* UIView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = B4044D55177C5B3800AB371D /* UIView+Image.m */; };
+		B4044D5E177C5B3800AB371D /* UIView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = B4044D55177C5B3800AB371D /* UIView+Image.m */; };
+		B4044D5F177C5CA900AB371D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4044D4A177C59F300AB371D /* UIKit.framework */; };
+		B4044D61177C5E6700AB371D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4044D60177C5E6700AB371D /* CoreGraphics.framework */; };
+		B4044D62177C5E6E00AB371D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4044D60177C5E6700AB371D /* CoreGraphics.framework */; };
+		B4A9944E178AA04600D76BBE /* STFloor+Sierra.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9944D178AA04600D76BBE /* STFloor+Sierra.m */; };
+		B4A99490178AA1B800D76BBE /* STAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A99477178AA1B800D76BBE /* STAddress.m */; };
+		B4A99497178AA1B800D76BBE /* STSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A99485178AA1B800D76BBE /* STSensor.m */; };
+		B4A99498178AA1B800D76BBE /* STSensorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A99487178AA1B800D76BBE /* STSensorPoint.m */; };
+		B4A99499178AA1B800D76BBE /* STStack.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A99489178AA1B800D76BBE /* STStack.m */; };
+		B4A9949A178AA1B800D76BBE /* STStackComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9948B178AA1B800D76BBE /* STStackComponent.m */; };
+		B4A9949B178AA1B800D76BBE /* STWifiNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9948D178AA1B800D76BBE /* STWifiNetwork.m */; };
+		B4A9949C178AA1B800D76BBE /* STWifiNetworkScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9948F178AA1B800D76BBE /* STWifiNetworkScanner.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4908E8F1782E7E9005E9CB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4044CC6177AF1D900AB371D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4044D22177AF66F00AB371D;
+			remoteInfo = SierraClassLibResoruces;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B4044CCC177AF1D900AB371D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				0AEC9D7C181FFD7D00CB05E3 /* STCity.h in CopyFiles */,
+				0A756229181FF1E000D9F674 /* STPoint.h in CopyFiles */,
+				0A756228181FF1D700D9F674 /* STFloor.h in CopyFiles */,
+				0A756227181FF1D000D9F674 /* STBuilding.h in CopyFiles */,
+				0A756226181FF1B700D9F674 /* STCountry.h in CopyFiles */,
+				A5D2445B179333D700191A6F /* STMeasurement.h in CopyFiles */,
+				A5242B28178D435A0044C0B1 /* STFloor+Sierra.h in CopyFiles */,
+				A5242B29178D435A0044C0B1 /* STAddress.h in CopyFiles */,
+				A5242B30178D435A0044C0B1 /* STSensor.h in CopyFiles */,
+				A5242B31178D435A0044C0B1 /* STSensorPoint.h in CopyFiles */,
+				A5242B32178D435A0044C0B1 /* STStack.h in CopyFiles */,
+				A5242B33178D435A0044C0B1 /* STStackComponent.h in CopyFiles */,
+				A5242B34178D435A0044C0B1 /* STWifiNetwork.h in CopyFiles */,
+				A5242B35178D435A0044C0B1 /* STWifiNetworkScanner.h in CopyFiles */,
+				B4044D1E177AF61200AB371D /* SiemensClassLibrary.xcdatamodel in CopyFiles */,
+				B4044CD7177AF1D900AB371D /* SierraClassLib.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0A756216181FF19600D9F674 /* STCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCountry.h; path = Models/STCountry.h; sourceTree = "<group>"; };
+		0A756217181FF19600D9F674 /* STCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCountry.m; path = Models/STCountry.m; sourceTree = "<group>"; };
+		0A756219181FF19600D9F674 /* STPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPoint.h; path = Models/STPoint.h; sourceTree = "<group>"; };
+		0A75621A181FF19600D9F674 /* STPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPoint.m; path = Models/STPoint.m; sourceTree = "<group>"; };
+		0A75621C181FF19600D9F674 /* STFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STFloor.h; path = Models/STFloor.h; sourceTree = "<group>"; };
+		0A75621D181FF19600D9F674 /* STFloor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STFloor.m; path = Models/STFloor.m; sourceTree = "<group>"; };
+		0A75621F181FF19600D9F674 /* STBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STBuilding.h; path = Models/STBuilding.h; sourceTree = "<group>"; };
+		0A756220181FF19600D9F674 /* STBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STBuilding.m; path = Models/STBuilding.m; sourceTree = "<group>"; };
+		0AEC9D79181FFD6300CB05E3 /* STCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCity.h; path = Models/STCity.h; sourceTree = "<group>"; };
+		0AEC9D7A181FFD6300CB05E3 /* STCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCity.m; path = Models/STCity.m; sourceTree = "<group>"; };
+		A5D244581793339A00191A6F /* STMeasurement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STMeasurement.h; path = Models/STMeasurement.h; sourceTree = "<group>"; };
+		A5D244591793339A00191A6F /* STMeasurement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STMeasurement.m; path = Models/STMeasurement.m; sourceTree = "<group>"; };
+		B4044CCE177AF1D900AB371D /* libSierraClassLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSierraClassLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4044CD1177AF1D900AB371D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B4044CD5177AF1D900AB371D /* SierraClassLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SierraClassLib-Prefix.pch"; sourceTree = "<group>"; };
+		B4044CD6177AF1D900AB371D /* SierraClassLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SierraClassLib.h; sourceTree = "<group>"; };
+		B4044CD8177AF1D900AB371D /* SierraClassLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SierraClassLib.m; sourceTree = "<group>"; };
+		B4044CDF177AF1EC00AB371D /* SiemensClassLibrary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SiemensClassLibrary.xcdatamodel; sourceTree = "<group>"; };
+		B4044D23177AF66F00AB371D /* SierraClassLibResoruces.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SierraClassLibResoruces.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4044D24177AF66F00AB371D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		B4044D28177AF66F00AB371D /* SierraClassLibResoruces-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SierraClassLibResoruces-Info.plist"; sourceTree = "<group>"; };
+		B4044D2A177AF66F00AB371D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B4044D2C177AF66F00AB371D /* SierraClassLibResoruces-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SierraClassLibResoruces-Prefix.pch"; sourceTree = "<group>"; };
+		B4044D4A177C59F300AB371D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B4044D4D177C5B3800AB371D /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		B4044D4E177C5B3800AB371D /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		B4044D4F177C5B3800AB371D /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		B4044D50177C5B3800AB371D /* PDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFView.h; sourceTree = "<group>"; };
+		B4044D51177C5B3800AB371D /* PDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFView.m; sourceTree = "<group>"; };
+		B4044D52177C5B3800AB371D /* UIImage+PDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PDF.h"; sourceTree = "<group>"; };
+		B4044D53177C5B3800AB371D /* UIImage+PDF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PDF.m"; sourceTree = "<group>"; };
+		B4044D54177C5B3800AB371D /* UIView+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Image.h"; sourceTree = "<group>"; };
+		B4044D55177C5B3800AB371D /* UIView+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Image.m"; sourceTree = "<group>"; };
+		B4044D60177C5E6700AB371D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B4A9944C178AA04600D76BBE /* STFloor+Sierra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STFloor+Sierra.h"; sourceTree = "<group>"; };
+		B4A9944D178AA04600D76BBE /* STFloor+Sierra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "STFloor+Sierra.m"; sourceTree = "<group>"; };
+		B4A99476178AA1B800D76BBE /* STAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STAddress.h; path = Models/STAddress.h; sourceTree = "<group>"; };
+		B4A99477178AA1B800D76BBE /* STAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STAddress.m; path = Models/STAddress.m; sourceTree = "<group>"; };
+		B4A99484178AA1B800D76BBE /* STSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STSensor.h; path = Models/STSensor.h; sourceTree = "<group>"; };
+		B4A99485178AA1B800D76BBE /* STSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STSensor.m; path = Models/STSensor.m; sourceTree = "<group>"; };
+		B4A99486178AA1B800D76BBE /* STSensorPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STSensorPoint.h; path = Models/STSensorPoint.h; sourceTree = "<group>"; };
+		B4A99487178AA1B800D76BBE /* STSensorPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STSensorPoint.m; path = Models/STSensorPoint.m; sourceTree = "<group>"; };
+		B4A99488178AA1B800D76BBE /* STStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STStack.h; path = Models/STStack.h; sourceTree = "<group>"; };
+		B4A99489178AA1B800D76BBE /* STStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STStack.m; path = Models/STStack.m; sourceTree = "<group>"; };
+		B4A9948A178AA1B800D76BBE /* STStackComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STStackComponent.h; path = Models/STStackComponent.h; sourceTree = "<group>"; };
+		B4A9948B178AA1B800D76BBE /* STStackComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STStackComponent.m; path = Models/STStackComponent.m; sourceTree = "<group>"; };
+		B4A9948C178AA1B800D76BBE /* STWifiNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STWifiNetwork.h; path = Models/STWifiNetwork.h; sourceTree = "<group>"; };
+		B4A9948D178AA1B800D76BBE /* STWifiNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STWifiNetwork.m; path = Models/STWifiNetwork.m; sourceTree = "<group>"; };
+		B4A9948E178AA1B800D76BBE /* STWifiNetworkScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STWifiNetworkScanner.h; path = Models/STWifiNetworkScanner.h; sourceTree = "<group>"; };
+		B4A9948F178AA1B800D76BBE /* STWifiNetworkScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STWifiNetworkScanner.m; path = Models/STWifiNetworkScanner.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4044CCB177AF1D900AB371D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4044D61177C5E6700AB371D /* CoreGraphics.framework in Frameworks */,
+				B4044D5F177C5CA900AB371D /* UIKit.framework in Frameworks */,
+				B4044CD2177AF1D900AB371D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4044D20177AF66F00AB371D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4044D62177C5E6E00AB371D /* CoreGraphics.framework in Frameworks */,
+				B4044D4B177C59F300AB371D /* UIKit.framework in Frameworks */,
+				B4044D25177AF66F00AB371D /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B4044CC5177AF1D900AB371D = {
+			isa = PBXGroup;
+			children = (
+				B4044CD3177AF1D900AB371D /* SierraClassLib */,
+				B4044D26177AF66F00AB371D /* SierraClassLibResoruces */,
+				B4044CD0177AF1D900AB371D /* Frameworks */,
+				B4044CCF177AF1D900AB371D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B4044CCF177AF1D900AB371D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4044CCE177AF1D900AB371D /* libSierraClassLib.a */,
+				B4044D23177AF66F00AB371D /* SierraClassLibResoruces.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4044CD0177AF1D900AB371D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4044D60177C5E6700AB371D /* CoreGraphics.framework */,
+				B4044D4A177C59F300AB371D /* UIKit.framework */,
+				B4044CD1177AF1D900AB371D /* Foundation.framework */,
+				B4044D24177AF66F00AB371D /* CoreFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4044CD3177AF1D900AB371D /* SierraClassLib */ = {
+			isa = PBXGroup;
+			children = (
+				B4A993CC178A9E6400D76BBE /* Categories */,
+				B4044D4C177C5B3800AB371D /* UIImage+PDF */,
+				B4044CE1177AF1EF00AB371D /* Models */,
+				B4044CDF177AF1EC00AB371D /* SiemensClassLibrary.xcdatamodel */,
+				B4044CD6177AF1D900AB371D /* SierraClassLib.h */,
+				B4044CD8177AF1D900AB371D /* SierraClassLib.m */,
+				B4044CD4177AF1D900AB371D /* Supporting Files */,
+			);
+			path = SierraClassLib;
+			sourceTree = "<group>";
+		};
+		B4044CD4177AF1D900AB371D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4044CD5177AF1D900AB371D /* SierraClassLib-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4044CE1177AF1EF00AB371D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0AEC9D79181FFD6300CB05E3 /* STCity.h */,
+				0AEC9D7A181FFD6300CB05E3 /* STCity.m */,
+				0A75621F181FF19600D9F674 /* STBuilding.h */,
+				0A756220181FF19600D9F674 /* STBuilding.m */,
+				0A75621C181FF19600D9F674 /* STFloor.h */,
+				0A75621D181FF19600D9F674 /* STFloor.m */,
+				0A756219181FF19600D9F674 /* STPoint.h */,
+				0A75621A181FF19600D9F674 /* STPoint.m */,
+				0A756216181FF19600D9F674 /* STCountry.h */,
+				0A756217181FF19600D9F674 /* STCountry.m */,
+				A5D244581793339A00191A6F /* STMeasurement.h */,
+				A5D244591793339A00191A6F /* STMeasurement.m */,
+				B4A99476178AA1B800D76BBE /* STAddress.h */,
+				B4A99477178AA1B800D76BBE /* STAddress.m */,
+				B4A99484178AA1B800D76BBE /* STSensor.h */,
+				B4A99485178AA1B800D76BBE /* STSensor.m */,
+				B4A99486178AA1B800D76BBE /* STSensorPoint.h */,
+				B4A99487178AA1B800D76BBE /* STSensorPoint.m */,
+				B4A99488178AA1B800D76BBE /* STStack.h */,
+				B4A99489178AA1B800D76BBE /* STStack.m */,
+				B4A9948A178AA1B800D76BBE /* STStackComponent.h */,
+				B4A9948B178AA1B800D76BBE /* STStackComponent.m */,
+				B4A9948C178AA1B800D76BBE /* STWifiNetwork.h */,
+				B4A9948D178AA1B800D76BBE /* STWifiNetwork.m */,
+				B4A9948E178AA1B800D76BBE /* STWifiNetworkScanner.h */,
+				B4A9948F178AA1B800D76BBE /* STWifiNetworkScanner.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B4044D26177AF66F00AB371D /* SierraClassLibResoruces */ = {
+			isa = PBXGroup;
+			children = (
+				B4044D27177AF66F00AB371D /* Supporting Files */,
+			);
+			path = SierraClassLibResoruces;
+			sourceTree = "<group>";
+		};
+		B4044D27177AF66F00AB371D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4044D28177AF66F00AB371D /* SierraClassLibResoruces-Info.plist */,
+				B4044D29177AF66F00AB371D /* InfoPlist.strings */,
+				B4044D2C177AF66F00AB371D /* SierraClassLibResoruces-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4044D4C177C5B3800AB371D /* UIImage+PDF */ = {
+			isa = PBXGroup;
+			children = (
+				B4044D4D177C5B3800AB371D /* LICENSE.txt */,
+				B4044D4E177C5B3800AB371D /* NSString+MD5.h */,
+				B4044D4F177C5B3800AB371D /* NSString+MD5.m */,
+				B4044D50177C5B3800AB371D /* PDFView.h */,
+				B4044D51177C5B3800AB371D /* PDFView.m */,
+				B4044D52177C5B3800AB371D /* UIImage+PDF.h */,
+				B4044D53177C5B3800AB371D /* UIImage+PDF.m */,
+				B4044D54177C5B3800AB371D /* UIView+Image.h */,
+				B4044D55177C5B3800AB371D /* UIView+Image.m */,
+			);
+			path = "UIImage+PDF";
+			sourceTree = "<group>";
+		};
+		B4A993CC178A9E6400D76BBE /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B4A9944C178AA04600D76BBE /* STFloor+Sierra.h */,
+				B4A9944D178AA04600D76BBE /* STFloor+Sierra.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B4044CCD177AF1D900AB371D /* SierraClassLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4044CDC177AF1D900AB371D /* Build configuration list for PBXNativeTarget "SierraClassLib" */;
+			buildPhases = (
+				B4044CCA177AF1D900AB371D /* Sources */,
+				B4044CCB177AF1D900AB371D /* Frameworks */,
+				B4044CCC177AF1D900AB371D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4908E901782E7E9005E9CB5 /* PBXTargetDependency */,
+			);
+			name = SierraClassLib;
+			productName = SierraClassLib;
+			productReference = B4044CCE177AF1D900AB371D /* libSierraClassLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B4044D22177AF66F00AB371D /* SierraClassLibResoruces */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4044D2D177AF66F00AB371D /* Build configuration list for PBXNativeTarget "SierraClassLibResoruces" */;
+			buildPhases = (
+				B4044D1F177AF66F00AB371D /* Sources */,
+				B4044D20177AF66F00AB371D /* Frameworks */,
+				B4044D21177AF66F00AB371D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SierraClassLibResoruces;
+			productName = SierraClassLibResoruces;
+			productReference = B4044D23177AF66F00AB371D /* SierraClassLibResoruces.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4044CC6177AF1D900AB371D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Lehrstuhl für Angewandte Softwaretechnik";
+			};
+			buildConfigurationList = B4044CC9177AF1D900AB371D /* Build configuration list for PBXProject "SierraClassLib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B4044CC5177AF1D900AB371D;
+			productRefGroup = B4044CCF177AF1D900AB371D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4044CCD177AF1D900AB371D /* SierraClassLib */,
+				B4044D22177AF66F00AB371D /* SierraClassLibResoruces */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4044D21177AF66F00AB371D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4044D30177AF6B400AB371D /* SiemensClassLibrary.xcdatamodel in Resources */,
+				B4044D2B177AF66F00AB371D /* InfoPlist.strings in Resources */,
+				B4044D56177C5B3800AB371D /* LICENSE.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4044CCA177AF1D900AB371D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4044CD9177AF1D900AB371D /* SierraClassLib.m in Sources */,
+				B4044CE0177AF1EC00AB371D /* SiemensClassLibrary.xcdatamodel in Sources */,
+				B4044D57177C5B3800AB371D /* NSString+MD5.m in Sources */,
+				B4044D59177C5B3800AB371D /* PDFView.m in Sources */,
+				B4044D5B177C5B3800AB371D /* UIImage+PDF.m in Sources */,
+				0A75621B181FF19600D9F674 /* STPoint.m in Sources */,
+				B4044D5D177C5B3800AB371D /* UIView+Image.m in Sources */,
+				B4A9944E178AA04600D76BBE /* STFloor+Sierra.m in Sources */,
+				0A756221181FF19600D9F674 /* STBuilding.m in Sources */,
+				B4A99490178AA1B800D76BBE /* STAddress.m in Sources */,
+				B4A99497178AA1B800D76BBE /* STSensor.m in Sources */,
+				B4A99498178AA1B800D76BBE /* STSensorPoint.m in Sources */,
+				0A75621E181FF19600D9F674 /* STFloor.m in Sources */,
+				B4A99499178AA1B800D76BBE /* STStack.m in Sources */,
+				B4A9949A178AA1B800D76BBE /* STStackComponent.m in Sources */,
+				0AEC9D7B181FFD6300CB05E3 /* STCity.m in Sources */,
+				B4A9949B178AA1B800D76BBE /* STWifiNetwork.m in Sources */,
+				B4A9949C178AA1B800D76BBE /* STWifiNetworkScanner.m in Sources */,
+				0A756218181FF19600D9F674 /* STCountry.m in Sources */,
+				A5D2445A1793339A00191A6F /* STMeasurement.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4044D1F177AF66F00AB371D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4044D58177C5B3800AB371D /* NSString+MD5.m in Sources */,
+				B4044D5A177C5B3800AB371D /* PDFView.m in Sources */,
+				B4044D5C177C5B3800AB371D /* UIImage+PDF.m in Sources */,
+				B4044D5E177C5B3800AB371D /* UIView+Image.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4908E901782E7E9005E9CB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4044D22177AF66F00AB371D /* SierraClassLibResoruces */;
+			targetProxy = B4908E8F1782E7E9005E9CB5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B4044D29177AF66F00AB371D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4044D2A177AF66F00AB371D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B4044CDA177AF1D900AB371D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B4044CDB177AF1D900AB371D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B4044CDD177AF1D900AB371D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/SierraClassLib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SierraClassLib/SierraClassLib-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B4044CDE177AF1D900AB371D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/SierraClassLib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SierraClassLib/SierraClassLib-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		B4044D2E177AF66F00AB371D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SierraClassLibResoruces/SierraClassLibResoruces-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "SierraClassLibResoruces/SierraClassLibResoruces-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		B4044D2F177AF66F00AB371D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SierraClassLibResoruces/SierraClassLibResoruces-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "SierraClassLibResoruces/SierraClassLibResoruces-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4044CC9177AF1D900AB371D /* Build configuration list for PBXProject "SierraClassLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4044CDA177AF1D900AB371D /* Debug */,
+				B4044CDB177AF1D900AB371D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4044CDC177AF1D900AB371D /* Build configuration list for PBXNativeTarget "SierraClassLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4044CDD177AF1D900AB371D /* Debug */,
+				B4044CDE177AF1D900AB371D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4044D2D177AF66F00AB371D /* Build configuration list for PBXNativeTarget "SierraClassLibResoruces" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4044D2E177AF66F00AB371D /* Debug */,
+				B4044D2F177AF66F00AB371D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B4044CC6177AF1D900AB371D /* Project object */;
+}
