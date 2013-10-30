@@ -19,7 +19,8 @@ typedef enum {
 typedef enum {
     SCAppTypeNormal = 0,
     SCAppTypeDummy = 1,
-    SCAppTypePresent = 2
+    SCAppTypePresent = 2,
+    SCAppTypeWasp = 3
 } SCAppType;
 
 @interface SCAppCore : NSObject {

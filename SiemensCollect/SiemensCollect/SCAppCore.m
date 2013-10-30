@@ -56,6 +56,9 @@
         } case SCAppTypePresent: {
             return scWebDAVBaseURLPresent;
             break;
+        } case SCAppTypeWasp: {
+            return scWebDAVBaseURLPresent;
+            break;
         }
         default:
             break;
@@ -71,6 +74,9 @@
             return scWebDAVURLPresent;
             break;
         } case SCAppTypePresent: {
+            return scWebDAVURLPresent;
+            break;
+        } case SCAppTypeWasp: {
             return scWebDAVURLPresent;
             break;
         }
@@ -90,6 +96,9 @@
         } case SCAppTypePresent: {
             return scRaspBaseURLPresent;
             break;
+        } case SCAppTypeWasp: {
+            return scRaspBaseURLDemo;
+            break;
         }
         default:
             break;
@@ -106,6 +115,9 @@
             break;
         } case SCAppTypePresent: {
             return scRaspPIMeasURLPresent;
+            break;
+        } case SCAppTypeWasp: {
+            return scRaspPIMeasURLDemo;
             break;
         }
         default:
@@ -124,6 +136,9 @@
         } case SCAppTypePresent: {
             return scRaspPIWifiURLPresent;
             break;
+        } case SCAppTypeWasp: {
+            return scRaspPIWifiURLDemo;
+            break;
         }
         default:
             break;
@@ -140,6 +155,9 @@
             break;
         } case SCAppTypePresent: {
             return scRaspWifiPatternPresent;
+            break;
+        } case SCAppTypeWasp: {
+            return scRaspWifiPatternDemo;
             break;
         }
         default:
@@ -158,6 +176,9 @@
         } case SCAppTypePresent: {
             return scRaspMeasPatternPresent;
             break;
+        } case SCAppTypeWasp: {
+            return scRaspMeasPatternDemo;
+            break;
         }
         default:
             break;
@@ -174,6 +195,9 @@
             break;
         } case SCAppTypePresent: {
             return scRaspPIDHCPURLPresent;
+            break;
+        } case SCAppTypeWasp: {
+            return scRaspPIDHCPURLDemo;
             break;
         }
         default:
@@ -192,6 +216,9 @@
         } case SCAppTypePresent: {
             return scRaspDHCPPatternPresent;
             break;
+        } case SCAppTypeWasp: {
+            return scRaspDHCPPatternDemo;
+            break;
         }
         default:
             break;
@@ -209,6 +236,9 @@
         } case SCAppTypePresent: {
             return scRaspPIContinuousURLPresent;
             break;
+        } case SCAppTypeWasp: {
+            return scRaspPIContinuousURLDemo;
+            break;
         }
         default:
             break;
@@ -225,6 +255,9 @@
             break;
         } case SCAppTypePresent: {
             return scRaspContinuousPatternPresent;
+            break;
+        } case SCAppTypeWasp: {
+            return scRaspContinuousPatternDemo;
             break;
         }
         default:

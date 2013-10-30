@@ -32,7 +32,7 @@
     [super viewDidLoad];
 	
     //Setup latest Floorplans
-    
+    //[(UISegmentedControl *)[self.demoSegment customView] setMomentary:YES];
     [(UISegmentedControl *)[self.demoSegment customView] addTarget:self action:@selector(valueChanged) forControlEvents:UIControlEventValueChanged];
     [self setUpSegemented];
     [self readSensorData];
@@ -47,17 +47,20 @@
     int selectedMode = [(UISegmentedControl *)[self.demoSegment customView] selectedSegmentIndex];
     
     if (selectedMode == 0) {
-        [[SCAppCore shared] setAppMode:[(UISegmentedControl *)[self.demoSegment customView] selectedSegmentIndex]];
+        //[[SCAppCore shared] setAppMode:[(UISegmentedControl *)[self.demoSegment customView] selectedSegmentIndex]];
         
         UIActionSheet * actionsheet = [[UIActionSheet alloc] initWithTitle:@"Choose" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
         [actionsheet addButtonWithTitle:@"Raspberry Pi"];
         [actionsheet addButtonWithTitle:@"Waspmote"];
-        CGFloat segX = [[self.demoSegment customView] layer].position.x;
+        CGFloat segX = [[self.demoSegment customView] layer].position.x - ([[self.demoSegment customView] frame].size.width / 4); // manually change this
         CGFloat segY = [[self.demoSegment customView] layer].position.y + [[self.demoSegment customView] frame].size.height;
         [actionsheet showFromRect:CGRectMake(segX, segY, 0.1, 0.1) inView:self.view animated:YES];
+        [(UISegmentedControl *)[self.demoSegment customView] setSelectedSegmentIndex:UISegmentedControlNoSegment];
+        
         
     } else {
         [[SCAppCore shared] setAppMode:[(UISegmentedControl *)[self.demoSegment customView] selectedSegmentIndex]];
+        [(UISegmentedControl *)[self.demoSegment customView] setTitle:@"Sensors" forSegmentAtIndex:0];
     }
 }
 
@@ -196,11 +199,20 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     //0 = Raspberry, 1 = Demo, 2 = Presentation, 3 = Waspmote
-    if (buttonIndex == 0) {
-        [[SCAppCore shared] setAppMode:0];
-    } else if (buttonIndex == 1){
-        [[SCAppCore shared] setAppMode:3];
+    if (buttonIndex == -1) {
+        if ([[SCAppCore shared] appMode] == 1) { // If the previous mode was demo mode, go back to select that index
+            [(UISegmentedControl *)[self.demoSegment customView] setSelectedSegmentIndex:1];
+        }
     }
+    else {
+        if (buttonIndex == 0) {
+            [[SCAppCore shared] setAppMode:0];
+        } else if (buttonIndex == 1){
+            [[SCAppCore shared] setAppMode:3];
+        }
+        [(UISegmentedControl *)[self.demoSegment customView] setTitle:[NSString stringWithFormat:@"%@", [actionSheet buttonTitleAtIndex:buttonIndex]] forSegmentAtIndex:0];
+    }
+    
 }
 
 #pragma mark 

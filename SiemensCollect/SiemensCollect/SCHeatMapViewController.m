@@ -7,7 +7,7 @@
 //
 
 #import "SCHeatMapViewController.h"
-#import <QuartzCore/QuartzCore.h>;
+#import <QuartzCore/QuartzCore.h>
 
 @interface SCHeatMapViewController () {
     float imageWidth;
@@ -29,11 +29,12 @@
     [super viewDidLoad];
     [self setTitle:@"Heatmap"];
     
-    //NSLog(@"floor plan: %@", self.floorPlan);
+    //NSLog(@"floor plan: %@", self.floorPlan.relatedFile);
     //NSLog(@"frame width: %f height: %f", self.view.frame.size.width, self.view.frame.size.height);
     
     //SET CORRECT IMAGE
-    UIImage *testImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_square", [self.floorPlan.name stringByReplacingOccurrencesOfString:@".pdf" withString:@""]]];
+    //UIImage *testImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_square", [self.floorPlan.relatedFile stringByReplacingOccurrencesOfString:@".pdf" withString:@""]]];
+    UIImage *testImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [self.floorPlan.relatedFile stringByReplacingOccurrencesOfString:@".pdf" withString:@""]]];
     mapImageView = [[UIImageView alloc] initWithImage:testImage];
     [mapImageView setFrame:CGRectMake(0, 0, 2000, 2000)];
     
@@ -365,7 +366,7 @@
 
 - (void)heatmap:(STHeatmap*)actHeatmap didGenerateImage:(UIImage*)image {
     NSLog(@"generated heatmap image");
-    generatedHeatImage = [self maskImage:image withMask:[UIImage imageNamed:[NSString stringWithFormat:@"%@_square", [self.floorPlan.name stringByReplacingOccurrencesOfString:@".pdf" withString:@""]]]];
+    generatedHeatImage = [self maskImage:image withMask:[UIImage imageNamed:[NSString stringWithFormat:@"%@", [self.floorPlan.relatedFile stringByReplacingOccurrencesOfString:@".pdf" withString:@""]]]];
     [self setHeatMapImageOverlay:generatedHeatImage];
  
 }
@@ -393,7 +394,7 @@
         valueDict[@(1)] = [NSString stringWithFormat:@"%.0f %@", heatmap.maxValue, unity];
         
         [heatMapLegend setHidden:YES];
-        heatMapLegend = [[SCHeatMapLegendView alloc] initWithFrame:CGRectMake(10, 10, 0, 0) andColorDict:heatmap.colors andValueDict:valueDict];
+        heatMapLegend = [[SCHeatMapLegendView alloc] initWithFrame:CGRectMake(50, 100, 0, 0) andColorDict:heatmap.colors andValueDict:valueDict];
         [self.view addSubview:heatMapLegend];
     } else {
         [heatMapLegend setHidden:YES];
