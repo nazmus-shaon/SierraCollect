@@ -40,9 +40,9 @@
         operationQueue = [NSOperationQueue new];
         
         //Seeding will be done when there are no floorplans available
-        //if ([[self getCountries] count] == 0) {
+        if ([[self getCountries] count] == 0) {
             [self generateBuildingsData];
-        //}
+        }
     }
     return self;
 }
