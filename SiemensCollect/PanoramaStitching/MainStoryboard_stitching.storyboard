@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="IrB-g9-S6T">
+    <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <scenes>
+        <!--Image Capture View Controller-->
+        <scene sceneID="J1D-aB-TI6">
+            <objects>
+                <viewController storyboardIdentifier="stitcher" id="IrB-g9-S6T" customClass="STImageCaptureViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2gC-uq-BeJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="hZb-iI-0j4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Arm-Kj-N3n">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mbw-aI-8cZ">
+                                <rect key="frame" x="366" y="494" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80Q-BK-Hll">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ew-kh-lyt">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="2Ew-kh-lyt" firstAttribute="centerY" secondItem="80Q-BK-Hll" secondAttribute="centerY" id="814-Y0-wx8"/>
+                                    <constraint firstItem="2Ew-kh-lyt" firstAttribute="trailing" secondItem="80Q-BK-Hll" secondAttribute="trailing" id="FJ1-Hx-oW8"/>
+                                    <constraint firstItem="2Ew-kh-lyt" firstAttribute="leading" secondItem="80Q-BK-Hll" secondAttribute="leading" id="Jcg-y1-3db"/>
+                                    <constraint firstItem="2Ew-kh-lyt" firstAttribute="bottom" secondItem="80Q-BK-Hll" secondAttribute="bottom" id="RiQ-hL-CbY"/>
+                                    <constraint firstItem="2Ew-kh-lyt" firstAttribute="top" secondItem="80Q-BK-Hll" secondAttribute="top" id="hLU-DY-UK2"/>
+                                    <constraint firstItem="2Ew-kh-lyt" firstAttribute="centerX" secondItem="80Q-BK-Hll" secondAttribute="centerX" id="sVm-Kh-Lka"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="IrB-g9-S6T" id="9FB-Cp-tA3"/>
+                                </connections>
+                            </scrollView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="R07-a9-hTj">
+                                <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                                <items>
+                                    <barButtonItem title="Use" style="done" id="D6z-Nk-7rF">
+                                        <connections>
+                                            <action selector="useCurrentImage:" destination="IrB-g9-S6T" id="Mqa-q4-4BB"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="E9P-h1-Z6C"/>
+                                    <barButtonItem title="Rotate" id="ceE-jh-dkP" userLabel="Bar Button Item - Rotate">
+                                        <connections>
+                                            <action selector="rotatePanorama:" destination="IrB-g9-S6T" id="P52-Th-Nff"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="New" id="3Ua-pK-mHW">
+                                        <connections>
+                                            <action selector="takeNewPicture:" destination="IrB-g9-S6T" id="HEX-Mb-JlM"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="R07-a9-hTj" firstAttribute="top" secondItem="80Q-BK-Hll" secondAttribute="bottom" id="9lg-r9-Obq"/>
+                            <constraint firstItem="R07-a9-hTj" firstAttribute="bottom" secondItem="Arm-Kj-N3n" secondAttribute="bottom" id="Gom-Sk-yIW"/>
+                            <constraint firstAttribute="centerX" secondItem="mbw-aI-8cZ" secondAttribute="centerX" id="HpO-pb-Bj7"/>
+                            <constraint firstItem="80Q-BK-Hll" firstAttribute="top" secondItem="Arm-Kj-N3n" secondAttribute="top" id="IvE-IV-K6P"/>
+                            <constraint firstItem="R07-a9-hTj" firstAttribute="leading" secondItem="Arm-Kj-N3n" secondAttribute="leading" id="JTq-Ug-UPf"/>
+                            <constraint firstItem="80Q-BK-Hll" firstAttribute="leading" secondItem="Arm-Kj-N3n" secondAttribute="leading" id="Tza-RA-tNS"/>
+                            <constraint firstItem="R07-a9-hTj" firstAttribute="trailing" secondItem="Arm-Kj-N3n" secondAttribute="trailing" id="Y4R-K2-ByG"/>
+                            <constraint firstItem="80Q-BK-Hll" firstAttribute="trailing" secondItem="Arm-Kj-N3n" secondAttribute="trailing" id="tYw-Bi-N1R"/>
+                            <constraint firstAttribute="centerY" secondItem="mbw-aI-8cZ" secondAttribute="centerY" id="unV-zc-vM0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="s4y-oK-BNj"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="mbw-aI-8cZ" id="e90-bI-zDO"/>
+                        <outlet property="imageView" destination="2Ew-kh-lyt" id="AmW-T3-ruM"/>
+                        <outlet property="rotateButton" destination="ceE-jh-dkP" id="kMB-3H-0Qt"/>
+                        <outlet property="scrollView" destination="80Q-BK-Hll" id="Mqd-hK-EdR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="INF-2V-uXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2336" y="971"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
