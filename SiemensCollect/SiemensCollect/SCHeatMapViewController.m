@@ -123,11 +123,13 @@
 
 - (void)showLoadingScreen {
     [heatMapLegend setHidden:YES];
+    [heatMapDateOption setHidden:YES];
     [loadingActivity startAnimating];
     [loadingView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
         [loadingView setAlpha:0.9];
         [heatMapLegend setAlpha:0];
+        [heatMapDateOption setAlpha:0];
     } completion:^(BOOL finished) {
         //[heatMapLegend setHidden:YES];
     }];
@@ -139,6 +141,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         [loadingView setAlpha:0];
         [heatMapLegend setAlpha:1];
+        [heatMapDateOption setAlpha:1];
     } completion:^(BOOL finished) {
         [loadingActivity stopAnimating];
         [self.settingsBtn setEnabled:YES];
@@ -396,8 +399,27 @@
         [heatMapLegend setHidden:YES];
         heatMapLegend = [[SCHeatMapLegendView alloc] initWithFrame:CGRectMake(50, 100, 0, 0) andColorDict:heatmap.colors andValueDict:valueDict];
         [self.view addSubview:heatMapLegend];
+        
+        //Sakib - Generate buttons for dates
+        NSMutableArray *arrDate = [[NSMutableArray alloc] init];
+        NSDate *currDate = [NSDate date];
+        [arrDate addObject:currDate];
+        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-86400]];
+        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-172800]];
+        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-86400]];
+        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-172800]];
+        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-86400]];
+        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-172800]];
+        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-86400]];
+        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-172800]];
+        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-86400]];
+        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-172800]];
+        [heatMapDateOption setHidden:YES];
+        heatMapDateOption = [[SCHeatMapDateOptionView alloc] initWithFrame:CGRectMake(870, 400, 0, 0) dateList:arrDate selectedDate:currDate];
+        [self.view addSubview:heatMapDateOption];
     } else {
         [heatMapLegend setHidden:YES];
+        [heatMapDateOption setHidden:YES];
     }
     
     

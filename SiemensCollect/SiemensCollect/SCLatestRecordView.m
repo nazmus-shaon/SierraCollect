@@ -59,7 +59,7 @@
         [infoView setBackgroundColor:[UIColor lightGrayColor]];
         [holderView addSubview:infoView];
         
-        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, infoView.frame.size.width-40, 20)];
+        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, infoView.frame.size.width-40, 20)];
         [infoLabel setBackgroundColor:[UIColor clearColor]];
         [infoLabel setText:[NSString stringWithFormat:@"Building: %@ - %@ - %i", floorplan.building.city.name, floorplan.building.name, floorplan.building.number.intValue]];
         [infoLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:13]];
@@ -67,7 +67,7 @@
         [infoLabel setTextAlignment:NSTextAlignmentCenter];
         [infoView addSubview:infoLabel];
         
-        UILabel *infoLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10+20, infoView.frame.size.width-40, 20)];
+        UILabel *infoLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10+16, infoView.frame.size.width-40, 20)];
         [infoLabel2 setBackgroundColor:[UIColor clearColor]];
         [infoLabel2 setText:[NSString stringWithFormat:@"Floornumber: %i - Groundfloor: %@", floorplan.floorNr.intValue, floorplan.isGroundFloor.boolValue ? @"Yes" : @"No"]];
         [infoLabel2 setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:13]];
@@ -82,7 +82,7 @@
             measCount += point.sensorPoints.count;
         }
         
-        UILabel *infoLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10+40, infoView.frame.size.width-40, 20)];
+        UILabel *infoLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10+34, infoView.frame.size.width-40, 20)];
         [infoLabel3 setBackgroundColor:[UIColor clearColor]];
         [infoLabel3 setText:[NSString stringWithFormat:@"Points: %i - Measurements: %i", floorplan.points.count, measCount]];
         [infoLabel3 setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:13]];

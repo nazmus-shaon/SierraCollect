@@ -11,6 +11,7 @@
 @interface SCMainViewController (){
     UIView  *loadingView;
     UIActivityIndicatorView *activityIndicator;
+    NSMutableArray *sensorTitles;
 }
 
 @end
@@ -30,28 +31,47 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    sensorTitles = [[NSMutableArray alloc] init];
+    [sensorTitles addObject:[NSString stringWithFormat:@"Raspberry Pi"]];
+    [sensorTitles addObject:[NSString stringWithFormat:@"Waspmote"]];
 	
     //Setup latest Floorplans
     //[(UISegmentedControl *)[self.demoSegment customView] setMomentary:YES];
+    
     [(UISegmentedControl *)[self.demoSegment customView] addTarget:self action:@selector(valueChanged) forControlEvents:UIControlEventValueChanged];
     [self setUpSegemented];
     [self readSensorData];
     
+    
 }
 
 - (void)setUpSegemented {
-    [(UISegmentedControl *)[self.demoSegment customView] setSelectedSegmentIndex:[[SCAppCore shared] appMode]];
+    //0 = Raspberry, 1 = Demo, 2 = Presentation, 3 = Waspmote
+    if([[SCAppCore shared] appMode] == 1) {
+        [(UISegmentedControl *)[self.demoSegment customView] setSelectedSegmentIndex:[[SCAppCore shared] appMode]];
+    } else if([[SCAppCore shared] appMode] == 2) {
+        //Do nothing
+    } else {
+        [(UISegmentedControl *)[self.demoSegment customView] setSelectedSegmentIndex:UISegmentedControlNoSegment];
+        if ([[SCAppCore shared] appMode] == 0) {
+            [(UISegmentedControl *)[self.demoSegment customView] setTitle:[sensorTitles objectAtIndex:0] forSegmentAtIndex:0];
+        } else if ([[SCAppCore shared] appMode] == 3) {
+            [(UISegmentedControl *)[self.demoSegment customView] setTitle:[sensorTitles objectAtIndex:1] forSegmentAtIndex:0];
+        }
+        
+    }
 }
 
 - (void)valueChanged {
-    int selectedMode = [(UISegmentedControl *)[self.demoSegment customView] selectedSegmentIndex];
+    int selectedSegmented = [(UISegmentedControl *)[self.demoSegment customView] selectedSegmentIndex];
     
-    if (selectedMode == 0) {
+    if (selectedSegmented == 0) {
         //[[SCAppCore shared] setAppMode:[(UISegmentedControl *)[self.demoSegment customView] selectedSegmentIndex]];
         
         UIActionSheet * actionsheet = [[UIActionSheet alloc] initWithTitle:@"Choose" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
-        [actionsheet addButtonWithTitle:@"Raspberry Pi"];
-        [actionsheet addButtonWithTitle:@"Waspmote"];
+        [actionsheet addButtonWithTitle:[sensorTitles objectAtIndex:0]];
+        [actionsheet addButtonWithTitle:[sensorTitles objectAtIndex:1]];
         CGFloat segX = [[self.demoSegment customView] layer].position.x - ([[self.demoSegment customView] frame].size.width / 4); // manually change this
         CGFloat segY = [[self.demoSegment customView] layer].position.y + [[self.demoSegment customView] frame].size.height;
         [actionsheet showFromRect:CGRectMake(segX, segY, 0.1, 0.1) inView:self.view animated:YES];

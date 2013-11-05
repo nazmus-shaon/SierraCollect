@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		0A189B5E18113EFF00BB1713 /* marker_raspberrypi.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A189B5C18113EFE00BB1713 /* marker_raspberrypi.png */; };
 		0A189B5F18113EFF00BB1713 /* marker_raspberrypi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A189B5D18113EFE00BB1713 /* marker_raspberrypi@2x.png */; };
+		0A21CA9B18290A0200764C41 /* right_menu_white_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21CA9718290A0200764C41 /* right_menu_white_button.png */; };
+		0A21CA9C18290A0200764C41 /* right_menu_blue_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21CA9818290A0200764C41 /* right_menu_blue_button@2x.png */; };
+		0A21CA9D18290A0200764C41 /* right_menu_white_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21CA9918290A0200764C41 /* right_menu_white_button@2x.png */; };
+		0A21CA9E18290A0200764C41 /* right_menu_blue_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21CA9A18290A0200764C41 /* right_menu_blue_button.png */; };
+		0A288F7F1827AF670039928A /* SCHeatMapDateOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A288F7E1827AF670039928A /* SCHeatMapDateOptionView.m */; };
+		0A288F821827B2EA0039928A /* right_menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A288F801827B2EA0039928A /* right_menu_bg.png */; };
+		0A288F831827B2EA0039928A /* right_menu_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A288F811827B2EA0039928A /* right_menu_bg@2x.png */; };
 		0A75625B181FF60200D9F674 /* MUN_MCHP_5_4805.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 0A756253181FF60200D9F674 /* MUN_MCHP_5_4805.mbtiles */; };
 		0A75625C181FF60200D9F674 /* MUN_MCHP_3_4803.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 0A756254181FF60200D9F674 /* MUN_MCHP_3_4803.mbtiles */; };
 		0A75625D181FF60200D9F674 /* BAR_FMI_1_2803.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 0A756255181FF60200D9F674 /* BAR_FMI_1_2803.mbtiles */; };
@@ -311,6 +318,14 @@
 /* Begin PBXFileReference section */
 		0A189B5C18113EFE00BB1713 /* marker_raspberrypi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_raspberrypi.png; sourceTree = "<group>"; };
 		0A189B5D18113EFE00BB1713 /* marker_raspberrypi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker_raspberrypi@2x.png"; sourceTree = "<group>"; };
+		0A21CA9718290A0200764C41 /* right_menu_white_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_menu_white_button.png; sourceTree = "<group>"; };
+		0A21CA9818290A0200764C41 /* right_menu_blue_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_menu_blue_button@2x.png"; sourceTree = "<group>"; };
+		0A21CA9918290A0200764C41 /* right_menu_white_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_menu_white_button@2x.png"; sourceTree = "<group>"; };
+		0A21CA9A18290A0200764C41 /* right_menu_blue_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_menu_blue_button.png; sourceTree = "<group>"; };
+		0A288F7D1827AF670039928A /* SCHeatMapDateOptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCHeatMapDateOptionView.h; sourceTree = "<group>"; };
+		0A288F7E1827AF670039928A /* SCHeatMapDateOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCHeatMapDateOptionView.m; sourceTree = "<group>"; };
+		0A288F801827B2EA0039928A /* right_menu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_menu_bg.png; sourceTree = "<group>"; };
+		0A288F811827B2EA0039928A /* right_menu_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_menu_bg@2x.png"; sourceTree = "<group>"; };
 		0A756253181FF60200D9F674 /* MUN_MCHP_5_4805.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; name = MUN_MCHP_5_4805.mbtiles; path = Floorplans/MUN_MCHP_5_4805.mbtiles; sourceTree = "<group>"; };
 		0A756254181FF60200D9F674 /* MUN_MCHP_3_4803.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; name = MUN_MCHP_3_4803.mbtiles; path = Floorplans/MUN_MCHP_3_4803.mbtiles; sourceTree = "<group>"; };
 		0A756255181FF60200D9F674 /* BAR_FMI_1_2803.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; name = BAR_FMI_1_2803.mbtiles; path = Floorplans/BAR_FMI_1_2803.mbtiles; sourceTree = "<group>"; };
@@ -829,6 +844,8 @@
 				B4D2804D174620B80024FC0F /* SCPdfPreviewCell.m */,
 				B41C9AC51792B2BF0022DB59 /* SCHeatMapLegendView.h */,
 				B41C9AC61792B2BF0022DB59 /* SCHeatMapLegendView.m */,
+				0A288F7D1827AF670039928A /* SCHeatMapDateOptionView.h */,
+				0A288F7E1827AF670039928A /* SCHeatMapDateOptionView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -885,6 +902,12 @@
 		B4888F95174511AD0033A54A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				0A21CA9718290A0200764C41 /* right_menu_white_button.png */,
+				0A21CA9818290A0200764C41 /* right_menu_blue_button@2x.png */,
+				0A21CA9918290A0200764C41 /* right_menu_white_button@2x.png */,
+				0A21CA9A18290A0200764C41 /* right_menu_blue_button.png */,
+				0A288F801827B2EA0039928A /* right_menu_bg.png */,
+				0A288F811827B2EA0039928A /* right_menu_bg@2x.png */,
 				0A78BBDC18211D5500F462A4 /* left_legend_bg@2x.png */,
 				0AAAD009182117C400844F0B /* left_legend_bg.png */,
 				0AEC9D86182000D400CB05E3 /* MUN_MCHP_7_4807@2x.png */,
@@ -1260,6 +1283,7 @@
 			files = (
 				B4A288331738507A005C958C /* InfoPlist.strings in Resources */,
 				B4A288421738507A005C958C /* MainStoryboard.storyboard in Resources */,
+				0A288F831827B2EA0039928A /* right_menu_bg@2x.png in Resources */,
 				0AEC9DA5182000D400CB05E3 /* MUN_MCHP_1_4801@2x.png in Resources */,
 				B44717EE1742519200CF2434 /* icon72.png in Resources */,
 				B44717F01742519600CF2434 /* icon144.png in Resources */,
@@ -1288,14 +1312,17 @@
 				B435E253176A05DF00312535 /* black-wifi-icon-hi.png in Resources */,
 				B435E254176A05DF00312535 /* icon_temp@2x.png in Resources */,
 				0AEC9DA0182000D400CB05E3 /* MUN_MCHP_3_4803@2x.png in Resources */,
+				0A21CA9E18290A0200764C41 /* right_menu_blue_button.png in Resources */,
 				B435E255176A05DF00312535 /* icon_temp.png in Resources */,
 				B435E256176A05DF00312535 /* icon_bright@2x.png in Resources */,
 				0A756271181FF61B00D9F674 /* MUN_MCHP_6_4806.pdf in Resources */,
 				B435E257176A05DF00312535 /* icon_bright.png in Resources */,
 				0A756270181FF61B00D9F674 /* MUN_MCHP_5_4805.pdf in Resources */,
+				0A21CA9D18290A0200764C41 /* right_menu_white_button@2x.png in Resources */,
 				B453CB47176B61C30003FEA4 /* btn_reload.png in Resources */,
 				B453CB48176B61C30003FEA4 /* btn_reload@2x.png in Resources */,
 				B4044D38177AF76E00AB371D /* SierraClassLibResoruces.bundle in Resources */,
+				0A21CA9C18290A0200764C41 /* right_menu_blue_button@2x.png in Resources */,
 				B40DF7C31785C246005003EA /* STCameraOverlayView.xib in Resources */,
 				B40DF7CE1785C3CC005003EA /* MainStoryboard_stitching.storyboard in Resources */,
 				0A189B5E18113EFF00BB1713 /* marker_raspberrypi.png in Resources */,
@@ -1308,6 +1335,7 @@
 				0AEC9DA3182000D400CB05E3 /* MUN_MCHP_2_4802@2x.png in Resources */,
 				B47FCB1E178CA8E6007A0BAF /* icon@2x.png in Resources */,
 				0A75626D181FF61B00D9F674 /* MUN_MCHP_2_4802.pdf in Resources */,
+				0A21CA9B18290A0200764C41 /* right_menu_white_button.png in Resources */,
 				B47FCB28178CA8F8007A0BAF /* default.png in Resources */,
 				B47FCB29178CA8F8007A0BAF /* default@2x.png in Resources */,
 				0AEC9D99182000D400CB05E3 /* MUN_MCHP_3_4803.png in Resources */,
@@ -1316,6 +1344,7 @@
 				0A75625E181FF60200D9F674 /* MUN_MCHP_6_4806.mbtiles in Resources */,
 				0AEC9DA1182000D400CB05E3 /* MUN_MCHP_6_4806@2x.png in Resources */,
 				B47FCB2D178CA974007A0BAF /* icon.png in Resources */,
+				0A288F821827B2EA0039928A /* right_menu_bg.png in Resources */,
 				0A75625F181FF60200D9F674 /* MUN_MCHP_1_4801.mbtiles in Resources */,
 				0A756261181FF60200D9F674 /* MUN_MCHP_2_4802.mbtiles in Resources */,
 				0A78BBDD18211D5500F462A4 /* left_legend_bg@2x.png in Resources */,
@@ -1411,6 +1440,7 @@
 				B40DF7C91785C246005003EA /* STKeyPointIndicator.mm in Sources */,
 				B40DF7CB1785C246005003EA /* UIImage+STOpenCV.mm in Sources */,
 				B40DF824178960E1005003EA /* SCPopOverOverviewViewController.m in Sources */,
+				0A288F7F1827AF670039928A /* SCHeatMapDateOptionView.m in Sources */,
 				B40DF82F1789613C005003EA /* SCGraphViewController.m in Sources */,
 				B40DF83317896158005003EA /* SCPopOverNavigationViewController.m in Sources */,
 				B4587526178ADD77006B371B /* SCAbstractTableViewController.m in Sources */,

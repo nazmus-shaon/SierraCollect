@@ -13,6 +13,7 @@
 #import "SCHeatMapSettingsViewController.h"
 #import "SCWebDAVService.h"
 #import "SCHeatMapLegendView.h"
+#import "SCHeatMapDateOptionView.h"
 
 @interface SCHeatMapViewController : SCAbstractViewController <STHeatmapDelegate, UIScrollViewDelegate, MFMailComposeViewControllerDelegate, SCHeatMapSettingsViewControllerDelegate> {
     STHeatmap *heatmap;
@@ -35,6 +36,7 @@
     BOOL newGeneratedHeatMap;
     
     SCHeatMapLegendView *heatMapLegend;
+    SCHeatMapDateOptionView *heatMapDateOption;
 }
 
 - (IBAction)exportHeatMap:(id)sender;
