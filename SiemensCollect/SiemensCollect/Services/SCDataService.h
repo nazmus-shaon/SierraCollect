@@ -43,6 +43,7 @@ typedef enum{
 
 - (void)getWifisensorsAddTarget:(id)target action:(SEL)action;
 - (void)getOtherSensorsAddTarget:(id)target action:(SEL)action;
+- (void)getOtherSensorsAddTargetForWaspmote;
 - (void)getDHCPClientsAddTarget:(id)target action:(SEL)action;
 - (void)getContinuousMeasurementsAddTarget:(id)target action:(SEL)action;
 

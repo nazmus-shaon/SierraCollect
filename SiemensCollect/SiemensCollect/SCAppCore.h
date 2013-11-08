@@ -13,6 +13,13 @@ typedef enum {
     SCSensorHumidity = 27,
     SCSensorAmbient = 21,
     SCSensorPressure = 221,
+    
+    SCSensorLumosity = 231,
+    SCSensorO2 = 232,
+    SCSensorCo2 = 233,
+    SCSensorTempWasp = 234,
+    SCSensorHumidityWasp = 235,
+    
     SCSensorUnknown = 999
 } SCSensorType;
 

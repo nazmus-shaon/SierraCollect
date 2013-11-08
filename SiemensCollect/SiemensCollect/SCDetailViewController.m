@@ -13,7 +13,7 @@
 
 @interface SCDetailViewController () {
     
-    int selectedMarkerType; // 0 = checkpoint, 1 = raspberry pi point, 2 = route polyline, 3 = continuous sensing point, 4 = routepoint
+    int selectedMarkerType; // 0 = checkpoint, 1(a) = raspberry pi point, 1(b) = waspmote point, 2 = route polyline, 3 = continuous sensing point, 4 = routepoint
     NSMutableArray *stPoints;
     RMMapView *mapView;
     RMAnnotation *selectedPoint;
@@ -42,6 +42,9 @@
     CLLocation *routeEndPoint;
     BOOL willMergeRoute;
     int routepointCounter;
+    
+    //for different type of sensors
+    NSString *currentSensor;
 }
 @end
 
@@ -90,6 +93,14 @@
     
     [_activityIndicator setHidden:YES];
     
+    if ([[SCAppCore shared] appMode] == 3) { // Waspmote
+        currentSensor = @"WM";
+        [(UISegmentedControl *)[self.selectedMode customView] setTitle:@"Meshlium" forSegmentAtIndex:1];
+        
+    } else {
+        currentSensor = @"RP";
+        [(UISegmentedControl *)[self.selectedMode customView] setTitle:@"Rasp. Pi" forSegmentAtIndex:1];
+    }
     
 }
 
@@ -101,9 +112,10 @@
 #pragma mark SCDataService reading
 - (void)loadDataFromServerForCheckpoint:(BOOL)isCheckpoint {
     //NSLog(@"******** load data from server");
+
     [[SCDataService shared] getWifisensorsAddTarget:self action:@selector(wifiSensorsLoaded:)];
     [[SCDataService shared] getOtherSensorsAddTarget:self action:@selector(otherSensorsLoaded:)];
-
+    
     saveCheckPoint = isCheckpoint;
     saveContinuousSensingPoint = NO;
     
@@ -188,6 +200,7 @@
     otherSensorArray = otherSensors;
     isOtherSensorCollected = TRUE;
     NSLog(@"******** loading other sensor data from server %d", [otherSensorArray count]);
+    
     if (isWifiSensorCollected && isOtherSensorCollected) {
         NSLog(@"******** SaveCheckPoint is about to call");
         if (saveContinuousSensingPoint) {
@@ -228,7 +241,7 @@
     }
     
     //Raspberry Pi Point
-    else if ([(UISegmentedControl *)[self.selectedMode customView] selectedSegmentIndex] == 1) {
+    else if ([(UISegmentedControl *)[self.selectedMode customView] selectedSegmentIndex] == 1 && [currentSensor isEqualToString:@"RP"]) {
         selectedMarkerType = 1;
         RMAnnotation *annotation = [RMAnnotation annotationWithMapView:map coordinate:[map pixelToCoordinate:point] andTitle:[NSString stringWithFormat:@""]];
         annotation.userInfo = @"raspberryPiPoint";
@@ -237,6 +250,24 @@
         annotation.subtitle = [NSString stringWithFormat:@"Coordinate %.3f %.3f", [annotation coordinate].latitude, [annotation coordinate].longitude];
         
         self.statusLabel.text = @"Raspberry Pi placed";
+        //[_activityIndicator startAnimating];
+        //[_activityIndicator setHidden:NO];
+        
+        //[self loadDataFromServerForCheckpoint:YES];//******** Woody
+        currentAnnotation = annotation;
+        //[self saveCheckPointForAnnotaton:annotation];
+    }
+    
+    //Waspmote Point
+    else if ([(UISegmentedControl *)[self.selectedMode customView] selectedSegmentIndex] == 1 && [currentSensor isEqualToString:@"WM"]) {
+        selectedMarkerType = 1;
+        RMAnnotation *annotation = [RMAnnotation annotationWithMapView:map coordinate:[map pixelToCoordinate:point] andTitle:[NSString stringWithFormat:@""]];
+        annotation.userInfo = @"waspmotePoint";
+        [map addAnnotation:annotation];
+        annotation.title = [NSString stringWithFormat:@"WaspmotePoint"];
+        annotation.subtitle = [NSString stringWithFormat:@"Coordinate %.3f %.3f", [annotation coordinate].latitude, [annotation coordinate].longitude];
+        
+        self.statusLabel.text = @"Meshlium placed";
         //[_activityIndicator startAnimating];
         //[_activityIndicator setHidden:NO];
         
@@ -335,7 +366,13 @@
     // Draw Raspberry Pi marker
     else if ([annotation.userInfo isEqual: @"raspberryPiPoint"]) {
         RMMarker *marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"marker_raspberrypi"]];
-        marker.anchorPoint = CGPointMake(0.5, 1.0);
+        marker.anchorPoint = CGPointMake(0.5, 0.5);
+        return marker;
+    }
+    // Draw Waspmote marker
+    else if ([annotation.userInfo isEqual: @"waspmotePoint"]) {
+        RMMarker *marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"marker_waspmote"]];
+        marker.anchorPoint = CGPointMake(0.5, 0.5);
         return marker;
     }
     // Draw continuousSensingPoint marker
@@ -387,6 +424,7 @@
         if ([sp.lattitude isEqualToNumber:[NSNumber numberWithDouble:[selectedPoint coordinate].latitude]]
             && [sp.longitude isEqualToNumber:[NSNumber numberWithDouble:[selectedPoint coordinate].longitude]]) {
             if ([poper.viewControllers objectAtIndex:0]) {
+                [(SCPopOverOverviewViewController *)[poper.viewControllers objectAtIndex:0] setTitle:sp.name];
                 //Set coordinate in the label of popover
                 [[(SCPopOverOverviewViewController *)[poper.viewControllers objectAtIndex:0] coordinateLabel] setText:[NSString stringWithFormat:@"Coordinate %.3f %.3f ", [selectedPoint coordinate].latitude, [selectedPoint coordinate].longitude]];
                 
@@ -537,6 +575,16 @@
             annotation.userInfo = @"raspberryPiPoint";
             [mapView addAnnotation:annotation];
             annotation.title = [NSString stringWithFormat:@"RaspberryPiPoint"];
+            annotation.subtitle = [NSString stringWithFormat:@"Coordinate %.3f %.3f", [annotation coordinate].latitude, [annotation coordinate].longitude];
+        }
+        
+        //draw waspmote points
+        else if ([point.pointType intValue] == 4) {
+            selectedMarkerType = 1;
+            RMAnnotation *annotation = [RMAnnotation annotationWithMapView:mapView coordinate:CLLocationCoordinate2DMake((CLLocationDegrees)[point.lattitude doubleValue],(CLLocationDegrees)[point.longitude doubleValue]) andTitle:[NSString stringWithFormat:@""]];
+            annotation.userInfo = @"waspmotePoint";
+            [mapView addAnnotation:annotation];
+            annotation.title = [NSString stringWithFormat:@"WaspmotePoint"];
             annotation.subtitle = [NSString stringWithFormat:@"Coordinate %.3f %.3f", [annotation coordinate].latitude, [annotation coordinate].longitude];
         }
         
@@ -866,13 +914,24 @@
         [self loadDataFromServerForCheckpoint:NO];
     }
 }
+- (void)editTitleClicked:(NSString *)title {
+    NSLog(@"Title: %@", title);
+    for (STPoint *sp in stPoints) {
+        if ([sp.lattitude isEqualToNumber:[NSNumber numberWithDouble:[selectedPoint coordinate].latitude]]
+            && [sp.longitude isEqualToNumber:[NSNumber numberWithDouble:[selectedPoint coordinate].longitude]]) {
+            [sp setName:title];
+        }
+    }
+    NSError *error = nil;
+    [self.managedObjectContext saveToPersistentStore:&error];
+}
 
 
 #pragma mark Other Helper functions
 - (void)drawingModeChanged:(id)sender {
     [self.startRoute setEnabled:NO];
-    if ([(UISegmentedControl *)[self.selectedMode customView] selectedSegmentIndex] == 1) { // raspberry pi
-        self.statusLabel.text = @"Tap on the map to set Raspberry Pi";
+    if ([(UISegmentedControl *)[self.selectedMode customView] selectedSegmentIndex] == 1) { // raspberry pi / waspmote
+        self.statusLabel.text = @"Tap on the map to position the sensor";
     }
     else if ([(UISegmentedControl *)[self.selectedMode customView] selectedSegmentIndex] == 2) { // continuous sensing
         self.statusLabel.text = @"Tap to set continuous sensing points on the map";

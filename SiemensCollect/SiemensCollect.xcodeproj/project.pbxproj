@@ -16,6 +16,8 @@
 		0A288F7F1827AF670039928A /* SCHeatMapDateOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A288F7E1827AF670039928A /* SCHeatMapDateOptionView.m */; };
 		0A288F821827B2EA0039928A /* right_menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A288F801827B2EA0039928A /* right_menu_bg.png */; };
 		0A288F831827B2EA0039928A /* right_menu_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A288F811827B2EA0039928A /* right_menu_bg@2x.png */; };
+		0A4F82AE182CE97B006C097E /* marker_waspmote.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A4F82AC182CE97B006C097E /* marker_waspmote.png */; };
+		0A4F82AF182CE97B006C097E /* marker_waspmote@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A4F82AD182CE97B006C097E /* marker_waspmote@2x.png */; };
 		0A75625B181FF60200D9F674 /* MUN_MCHP_5_4805.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 0A756253181FF60200D9F674 /* MUN_MCHP_5_4805.mbtiles */; };
 		0A75625C181FF60200D9F674 /* MUN_MCHP_3_4803.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 0A756254181FF60200D9F674 /* MUN_MCHP_3_4803.mbtiles */; };
 		0A75625D181FF60200D9F674 /* BAR_FMI_1_2803.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 0A756255181FF60200D9F674 /* BAR_FMI_1_2803.mbtiles */; };
@@ -326,6 +328,8 @@
 		0A288F7E1827AF670039928A /* SCHeatMapDateOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCHeatMapDateOptionView.m; sourceTree = "<group>"; };
 		0A288F801827B2EA0039928A /* right_menu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_menu_bg.png; sourceTree = "<group>"; };
 		0A288F811827B2EA0039928A /* right_menu_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_menu_bg@2x.png"; sourceTree = "<group>"; };
+		0A4F82AC182CE97B006C097E /* marker_waspmote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_waspmote.png; sourceTree = "<group>"; };
+		0A4F82AD182CE97B006C097E /* marker_waspmote@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker_waspmote@2x.png"; sourceTree = "<group>"; };
 		0A756253181FF60200D9F674 /* MUN_MCHP_5_4805.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; name = MUN_MCHP_5_4805.mbtiles; path = Floorplans/MUN_MCHP_5_4805.mbtiles; sourceTree = "<group>"; };
 		0A756254181FF60200D9F674 /* MUN_MCHP_3_4803.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; name = MUN_MCHP_3_4803.mbtiles; path = Floorplans/MUN_MCHP_3_4803.mbtiles; sourceTree = "<group>"; };
 		0A756255181FF60200D9F674 /* BAR_FMI_1_2803.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; name = BAR_FMI_1_2803.mbtiles; path = Floorplans/BAR_FMI_1_2803.mbtiles; sourceTree = "<group>"; };
@@ -731,6 +735,8 @@
 		B43671461779A82100B4B54B /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				0A4F82AC182CE97B006C097E /* marker_waspmote.png */,
+				0A4F82AD182CE97B006C097E /* marker_waspmote@2x.png */,
 				B41C9B09179306270022DB59 /* menu_icon.png */,
 				B41C9B0A179306270022DB59 /* menu_icon@2x.png */,
 				6745A50B178F144900098833 /* icon_humidity@2x.png */,
@@ -1297,6 +1303,7 @@
 				B435E2391769E69900312535 /* map_back.png in Resources */,
 				B435E23A1769E69900312535 /* map_back@2x.png in Resources */,
 				B435E23F1769ED6A00312535 /* marker_route.png in Resources */,
+				0A4F82AF182CE97B006C097E /* marker_waspmote@2x.png in Resources */,
 				B435E2401769ED6A00312535 /* marker_route@2x.png in Resources */,
 				0AEC9D98182000D400CB05E3 /* BAR_FMI_1_2803.png in Resources */,
 				B435E2411769ED6A00312535 /* marker_point.png in Resources */,
@@ -1344,6 +1351,7 @@
 				0A75625E181FF60200D9F674 /* MUN_MCHP_6_4806.mbtiles in Resources */,
 				0AEC9DA1182000D400CB05E3 /* MUN_MCHP_6_4806@2x.png in Resources */,
 				B47FCB2D178CA974007A0BAF /* icon.png in Resources */,
+				0A4F82AE182CE97B006C097E /* marker_waspmote.png in Resources */,
 				0A288F821827B2EA0039928A /* right_menu_bg.png in Resources */,
 				0A75625F181FF60200D9F674 /* MUN_MCHP_1_4801.mbtiles in Resources */,
 				0A756261181FF60200D9F674 /* MUN_MCHP_2_4802.mbtiles in Resources */,

@@ -83,7 +83,7 @@
 - (void)loadDataFromServer {
     NSLog(@"load data from server");
     [[SCDataService shared] getWifisensorsAddTarget:self action:@selector(wifiSensorsLoaded:)];
-    [[SCDataService shared] getOtherSensorsAddTarget:self action:@selector(otherSensorsLoaded:)];    
+    [[SCDataService shared] getOtherSensorsAddTarget:self action:@selector(otherSensorsLoaded:)];
 }
 
 #pragma mark button functions
@@ -224,6 +224,22 @@
                 case 221://Air Pressure
                     cell.imageView.image = [UIImage imageNamed:@"icon_pressure"];
                     break;
+                case 231://Lumosity - Sakib, added for waspmote
+                    cell.imageView.image = [UIImage imageNamed:@"icon_bright"];
+                    break;
+                case 232://O2 - Sakib, added for waspmote
+                    cell.imageView.image = [UIImage imageNamed:@"icon_pressure"];
+                    break;
+                case 233://CO2 - Sakib, added for waspmote
+                    cell.imageView.image = [UIImage imageNamed:@"icon_pressure"];
+                    break;
+                case 234://Temperature - Sakib, added for waspmote
+                    cell.imageView.image = [UIImage imageNamed:@"icon_temp"];
+                    break;
+                case 235://Humidity - Sakib, added for waspmote
+                    cell.imageView.image = [UIImage imageNamed:@"icon_humidity"];
+                    break;
+
                     
                 default:
                     cell.imageView.image = [UIImage imageNamed:@"icon_wifi"];

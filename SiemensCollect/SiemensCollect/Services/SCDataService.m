@@ -68,6 +68,10 @@
     [germany setAbb:@"DE"];
     [germany setName:@"Germany"];
     
+    STCountry *russia = [NSEntityDescription insertNewObjectForEntityForName:@"STCountry" inManagedObjectContext:self.managedObjectContext];
+    [russia setAbb:@"RU"];
+    [russia setName:@"Russia"];
+    
     
     //SETUP THE CITY
     
@@ -84,12 +88,16 @@
     STCity *barcelona = [NSEntityDescription insertNewObjectForEntityForName:@"STCity" inManagedObjectContext:self.managedObjectContext];
     [barcelona setName:@"Barcelona"];
     
+    STCity *moscow = [NSEntityDescription insertNewObjectForEntityForName:@"STCity" inManagedObjectContext:self.managedObjectContext];
+    [moscow setName:@"Moscow"];
+    
     
     //Add City to Country
     [germany addCitiesObject:munich];
     [portugal addCitiesObject:lisbon];
     [spain addCitiesObject:barcelona];
     [uk addCitiesObject:london];
+    [russia addCitiesObject:moscow];
     
     STBuilding *buildingMchp = [NSEntityDescription insertNewObjectForEntityForName:@"STBuilding" inManagedObjectContext:self.managedObjectContext];
     [buildingMchp setName:@"Mch P"];
@@ -138,7 +146,7 @@
     }
     
     //Add two mor buildings:
-    STBuilding *buildingTUM2 = [NSEntityDescription insertNewObjectForEntityForName:@"STBuilding" inManagedObjectContext:self.managedObjectContext];
+    /*STBuilding *buildingTUM2 = [NSEntityDescription insertNewObjectForEntityForName:@"STBuilding" inManagedObjectContext:self.managedObjectContext];
     [buildingTUM2 setName:@"TUM Chemie"];
     buildingTUM2.number = [[NSNumber alloc] initWithInt:0];
     
@@ -151,7 +159,7 @@
     
     [munich addBuildingsObject:buildingTUM3];
     [buildingTUM3 setCity:munich];
-    
+    */
     
     NSError *error;
     if (![self.managedObjectContext saveToPersistentStore:&error]) {
@@ -351,9 +359,13 @@
         //            return [obj1.sensor.unit compare:obj2.sensor.unit];
         //        }];
         //        [self.otherSensorArray addObjectsFromArray:sortedArray];
-        [self.otherSensorArray addObjectsFromArray:result.array];
-        NSLog(@"******** SCDataService.getOtherSensors found %d sensors", [self.otherSensorArray count]);
+        if ([[SCAppCore shared] appMode] == 3) { //Sakib - waspmote
+            [self getOtherSensorsAddTargetForWaspmote];
+        } else {
+            [self.otherSensorArray addObjectsFromArray:result.array];
+        }
         
+        NSLog(@"******** SCDataService.getOtherSensors found %d sensors", [self.otherSensorArray count]);
         if ([target respondsToSelector:action]) {
             [target performSelector:action withObject:self.otherSensorArray];
         }
@@ -367,6 +379,65 @@
     //Add the fetching operation in Operation Queue
     //NSOperationQueue *operationQueue = [NSOperationQueue new];
     [operationQueue addOperation:operationMeasurement];
+}
+
+- (void)getOtherSensorsAddTargetForWaspmote{
+    // Sakib added for dummy waspmote data
+    
+    //Lumosity - 231
+    STSensor *stSensor = [NSEntityDescription insertNewObjectForEntityForName:@"STSensor" inManagedObjectContext:self.managedObjectContext];
+    [stSensor setType:[NSNumber numberWithInteger: 231]];
+    [stSensor setUnit:@"%"];
+    STMeasurement *stm = [NSEntityDescription insertNewObjectForEntityForName:@"STMeasurement" inManagedObjectContext:self.managedObjectContext];
+    [stm setValue:[NSNumber numberWithInteger: 0 + rand() % (100-0)]]; //min + rand() % (max-min);
+    [stm setCreated:[NSDate date]];
+    [stm setSensor:stSensor];
+    
+    [self.otherSensorArray addObject:stm];
+    
+    //Oxyzen - 232
+    stSensor = [NSEntityDescription insertNewObjectForEntityForName:@"STSensor" inManagedObjectContext:self.managedObjectContext];
+    [stSensor setType:[NSNumber numberWithInteger: 232]];
+    [stSensor setUnit:@"%"];
+    stm = [NSEntityDescription insertNewObjectForEntityForName:@"STMeasurement" inManagedObjectContext:self.managedObjectContext];
+    [stm setValue:[NSNumber numberWithInteger: 17 + rand() % (22-17)]];
+    [stm setCreated:[NSDate date]];
+    [stm setSensor:stSensor];
+    
+    [self.otherSensorArray addObject:stm];
+    
+    //CO2 - 233
+    stSensor = [NSEntityDescription insertNewObjectForEntityForName:@"STSensor" inManagedObjectContext:self.managedObjectContext];
+    [stSensor setType:[NSNumber numberWithInteger: 233]];
+    [stSensor setUnit:@"%"];
+    stm = [NSEntityDescription insertNewObjectForEntityForName:@"STMeasurement" inManagedObjectContext:self.managedObjectContext];
+    [stm setValue:[NSNumber numberWithFloat: arc4random() % 10 * 0.1]];
+    [stm setCreated:[NSDate date]];
+    [stm setSensor:stSensor];
+    
+    [self.otherSensorArray addObject:stm];
+    
+    //Temperature - 234
+    stSensor = [NSEntityDescription insertNewObjectForEntityForName:@"STSensor" inManagedObjectContext:self.managedObjectContext];
+    [stSensor setType:[NSNumber numberWithInteger: 234]];
+    [stSensor setUnit:@"Â°C"];
+    stm = [NSEntityDescription insertNewObjectForEntityForName:@"STMeasurement" inManagedObjectContext:self.managedObjectContext];
+    [stm setValue:[NSNumber numberWithFloat: -20 + rand() % (40-(-20))]];
+    [stm setCreated:[NSDate date]];
+    [stm setSensor:stSensor];
+    
+    [self.otherSensorArray addObject:stm];
+    
+    //Humidity - 235
+    stSensor = [NSEntityDescription insertNewObjectForEntityForName:@"STSensor" inManagedObjectContext:self.managedObjectContext];
+    [stSensor setType:[NSNumber numberWithInteger: 235]];
+    [stSensor setUnit:@"%"];
+    stm = [NSEntityDescription insertNewObjectForEntityForName:@"STMeasurement" inManagedObjectContext:self.managedObjectContext];
+    [stm setValue:[NSNumber numberWithFloat: 0 + rand() % (100-0)]];
+    [stm setCreated:[NSDate date]];
+    [stm setSensor:stSensor];
+    
+    [self.otherSensorArray addObject:stm];
 }
 
 - (void)getDHCPClientsAddTarget:(id)target action:(SEL)action {
@@ -482,7 +553,6 @@
     //NSOperationQueue *operationQueue = [NSOperationQueue new];
     [operationQueue addOperation:operationMeasurement];
 }
-
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if (object == operationQueue && [keyPath isEqualToString:@"operations"]) {

@@ -281,7 +281,22 @@
         } case SCSensorAmbient: {
             returnString = @"Ambient Light";
             break;
-        } default:
+        } case SCSensorTempWasp: {
+            returnString = @"TemperatureWasp";
+            break;
+        } case SCSensorHumidityWasp: {
+            returnString = @"HumidityWasp";
+            break;
+        } case SCSensorO2: {
+            returnString = @"OxyzenWasp";
+            break;
+        } case SCSensorCo2: {
+            returnString =@"CO2Wasp";
+            break;
+        } case SCSensorLumosity: {
+            returnString = @"LumosityWasp";
+            break;
+        }default:
             returnString = @"Unknown Sensor";
             break;
     }

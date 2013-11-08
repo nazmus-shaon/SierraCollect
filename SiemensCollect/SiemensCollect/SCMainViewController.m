@@ -198,12 +198,18 @@
         NSLog(@"*** objects: %@", measurement.value);
         
         if ([[self getSensorName:[measurement.sensor.type integerValue]] isEqualToString:@"Air Pressure"]) {
-            
+            //Do nothing
         } else if ([[self getSensorName:[measurement.sensor.type integerValue]] isEqualToString:@"Ambient Light"]) {
             self.brightnessLabel.text = [NSString stringWithFormat:@"%d Lux", [measurement.value integerValue]];
         } else if ([[self getSensorName:[measurement.sensor.type integerValue]] isEqualToString:@"Humidity"]) {
             self.humidityLabel.text = [NSString stringWithFormat:@"%d%% Humidity", [measurement.value integerValue]];
         } else if ([[self getSensorName:[measurement.sensor.type integerValue]] isEqualToString:@"Temperature"]) {
+            self.temperatureLabel.text = [NSString stringWithFormat:@"%d Degrees", [measurement.value integerValue]];
+        } else if ([[self getSensorName:[measurement.sensor.type integerValue]] isEqualToString:@"LumosityWasp"]) {
+            self.brightnessLabel.text = [NSString stringWithFormat:@"%d %%", [measurement.value integerValue]];
+        } else if ([[self getSensorName:[measurement.sensor.type integerValue]] isEqualToString:@"HumidityWasp"]) {
+            self.humidityLabel.text = [NSString stringWithFormat:@"%d%% Humidity", [measurement.value integerValue]];
+        } else if ([[self getSensorName:[measurement.sensor.type integerValue]] isEqualToString:@"TemperatureWasp"]) {
             self.temperatureLabel.text = [NSString stringWithFormat:@"%d Degrees", [measurement.value integerValue]];
         }
     }

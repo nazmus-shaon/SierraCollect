@@ -17,7 +17,14 @@
     double avgAmbientLight;
     double avgAirPressure;
     
+    double avgLumosity;
+    double avgO2;
+    double avgCo2;
+    double avgTempWasp;
+    double avgHumidityWasp;
+    
     int count;
+    #define ChangeTitleAlert 1
 }
 
 @end
@@ -83,11 +90,21 @@
 - (void)refreshUI {
     [self.tableView reloadData];
     [self calculateAverageSensorValues];
+    if ([[SCAppCore shared] appMode] == 3) { // Waspmote
+        self.airPressureLabel.text = [NSString stringWithFormat:@"Oxygen: %.1f", avgO2];
+        self.humidityLabel.text = [NSString stringWithFormat:@"Humidity: %.1f", avgHumidityWasp];
+        self.temperatureLabel.text = [NSString stringWithFormat:@"Temperature: %.1f", avgTempWasp];
+        self.ambientLightLabel.text = [NSString stringWithFormat:@"Light: %.1f", avgLumosity];
+        self.co2Label.text = [NSString stringWithFormat:@"Carbon-di-Oxide: %.1f", avgCo2];
+        [self.co2Label setHidden:NO];
+    } else {
+        self.airPressureLabel.text = [NSString stringWithFormat:@"Air Pressure: %.1f", avgAirPressure];
+        self.humidityLabel.text = [NSString stringWithFormat:@"Humidity: %.1f", avgHumidity];
+        self.temperatureLabel.text = [NSString stringWithFormat:@"Temperature: %.1f", avgTemperature];
+        self.ambientLightLabel.text = [NSString stringWithFormat:@"Light: %.1f", avgAmbientLight];
+        [self.co2Label setHidden:YES];
+    }
     
-    self.airPressureLabel.text = [NSString stringWithFormat:@"Air Pressure: %.1f", avgAirPressure];
-    self.humidityLabel.text = [NSString stringWithFormat:@"Humidity: %.1f", avgHumidity];
-    self.temperatureLabel.text = [NSString stringWithFormat:@"Temperature: %.1f", avgTemperature];
-    self.ambientLightLabel.text = [NSString stringWithFormat:@"Light: %.1f", avgAmbientLight];
 }
 
 - (void)calculateAverageSensorValues{
@@ -96,6 +113,12 @@
     avgHumidity = 0;
     avgAmbientLight = 0;
     avgAirPressure = 0;
+    
+    avgLumosity = 0;
+    avgO2 = 0;
+    avgCo2 = 0;
+    avgTempWasp = 0;
+    avgHumidityWasp = 0;
     
     for (STSensorPoint *ssp in [self.point.sensorPoints allObjects]) {
         for (STMeasurement *measurement in [ssp.measurements allObjects]) {
@@ -112,7 +135,21 @@
                 case 221://SensorType.Airpressure:// asish made 221 as airpressure
                     avgAirPressure += [measurement.value floatValue];
                     break;
-
+                case 231://Lumosity - Sakib, added for waspmote
+                    avgLumosity += [measurement.value floatValue];
+                    break;
+                case 232://O2 - Sakib, added for waspmote
+                    avgO2 += [measurement.value floatValue];
+                    break;
+                case 233://CO2 - Sakib, added for waspmote
+                    avgCo2 += [measurement.value floatValue];
+                    break;
+                case 234://Temperature - Sakib, added for waspmote
+                    avgTempWasp += [measurement.value floatValue];
+                    break;
+                case 235://Humidity - Sakib, added for waspmote
+                    avgHumidityWasp += [measurement.value floatValue];
+                    break;
                 default:
                     break;
             }
@@ -230,8 +267,10 @@
 - (IBAction)collectNewData:(id)sender {
     NSLog(@"******** Collect New Data");
     [self showLoadingScreen];
+
     [[SCDataService shared] getWifisensorsAddTarget:self action:@selector(wifiSensorsLoaded:)];
     [[SCDataService shared] getOtherSensorsAddTarget:self action:@selector(otherSensorsLoaded:)];
+
 }
 
 -(void)wifiSensorsLoaded:(NSMutableArray *)wifiSensors{
@@ -302,6 +341,48 @@
 - (void)mergeRoute:(id)sender {
     NSLog(@"Merge Route");
     [self.delegate mergeRouteClicked];
+}
+
+- (void)editTitle:(id)sender {
+    NSLog(@"Edit Checkpoint Title");
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Edit checkpoint name" message:@"Please enter a name for this checkpoint" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done",nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alert.tag = ChangeTitleAlert;
+    UITextField * alertTextField = [alert textFieldAtIndex:0];
+    //alertTextField.keyboardType = UIKeyboardTypeNumberPad;
+    alertTextField.placeholder = @"";
+    [alert show];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"Entered: %@ %d",[[alertView textFieldAtIndex:0] text], buttonIndex);
+    switch (alertView.tag) {
+        case ChangeTitleAlert:
+            
+            switch (buttonIndex) {
+                case 1: //Done
+                    
+                    if( [[[alertView textFieldAtIndex:0] text] length] > 0 )
+                    {
+                        [self.delegate editTitleClicked:[[alertView textFieldAtIndex:0] text]];
+                        [self setTitle:[[alertView textFieldAtIndex:0] text]];
+                    }
+                    else
+                    {
+                        //Do nothing
+                    }
+                    
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

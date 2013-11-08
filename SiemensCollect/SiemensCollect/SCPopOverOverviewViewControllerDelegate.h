@@ -14,6 +14,7 @@
 - (void)deleteCheckPointClicked;
 - (void)startSubRouteClicked;
 - (void)mergeRouteClicked;
+- (void)editTitleClicked:(NSString *)title;
 
 @end
 
