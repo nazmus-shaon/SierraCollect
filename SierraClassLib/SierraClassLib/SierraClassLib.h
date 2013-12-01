@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "STWifiNetworkScanner.h"
 #import "STCity.h"
+#import "STArea.h"
 #import "STMeasurement.h"
 #import "STSensorPoint.h"
 #import "STFloor.h"

@@ -10,6 +10,7 @@
 
 @implementation SCAppCore
 
+
 + (SCAppCore *)shared {
     static SCAppCore *shared;
     @synchronized(self)
@@ -24,6 +25,8 @@
 - (id)init {
     self = [super init];
     if (self) {
+        //sakib - set app's default app mode here
+        [self setAppMode:SCAppTypeDummy];
     }
     return self;
 }

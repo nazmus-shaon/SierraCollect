@@ -37,7 +37,8 @@ typedef enum{
 - (NSArray *)getFloorplansForBuilding:(STBuilding *)building;
 - (NSArray *)getCountries;
 - (NSArray *)getCitiesForCountry:(STCountry *)country;
-- (NSArray *)getBuildingsForCity:(STCity*)city;
+- (NSArray *)getAreasForCity:(STCity*)city;
+- (NSArray *)getBuildingsForArea:(STCity*)city;
 - (NSArray *)getPointsforFloor:(STFloor *)floor;
 - (NSArray *)getLastUpdatedFloorplans;
 

@@ -14,7 +14,8 @@
 typedef enum {
     SCMenuViewControllerCountry = 0,
     SCMenuViewControllerCity = 1,
-    SCMenuViewControllerBuilding = 2
+    SCMenuViewControllerArea = 2,
+    SCMenuViewControllerBuilding = 3
 } SCMenuViewControllerKind;
 
 @interface SCMenuViewController : SCAbstractViewController <UITableViewDataSource, UITableViewDelegate>

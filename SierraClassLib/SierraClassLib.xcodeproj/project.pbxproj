@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A4ADD50184A1BA900EE71C1 /* STArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4ADD4F184A1BA900EE71C1 /* STArea.m */; };
+		0A4ADD53184A1BAA00EE71C1 /* STCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4ADD52184A1BAA00EE71C1 /* STCity.m */; };
+		0A4ADD56184A1BAA00EE71C1 /* STBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4ADD55184A1BAA00EE71C1 /* STBuilding.m */; };
 		0A756218181FF19600D9F674 /* STCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A756217181FF19600D9F674 /* STCountry.m */; };
 		0A75621B181FF19600D9F674 /* STPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A75621A181FF19600D9F674 /* STPoint.m */; };
 		0A75621E181FF19600D9F674 /* STFloor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A75621D181FF19600D9F674 /* STFloor.m */; };
-		0A756221181FF19600D9F674 /* STBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A756220181FF19600D9F674 /* STBuilding.m */; };
 		0A756226181FF1B700D9F674 /* STCountry.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A756216181FF19600D9F674 /* STCountry.h */; };
-		0A756227181FF1D000D9F674 /* STBuilding.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A75621F181FF19600D9F674 /* STBuilding.h */; };
 		0A756228181FF1D700D9F674 /* STFloor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A75621C181FF19600D9F674 /* STFloor.h */; };
 		0A756229181FF1E000D9F674 /* STPoint.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A756219181FF19600D9F674 /* STPoint.h */; };
-		0AEC9D7B181FFD6300CB05E3 /* STCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC9D7A181FFD6300CB05E3 /* STCity.m */; };
-		0AEC9D7C181FFD7D00CB05E3 /* STCity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0AEC9D79181FFD6300CB05E3 /* STCity.h */; };
+		0A7E3F0B184A31F100C0AA08 /* STCity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A4ADD51184A1BAA00EE71C1 /* STCity.h */; };
+		0A7E3F0C184A31FA00C0AA08 /* STBuilding.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A4ADD54184A1BAA00EE71C1 /* STBuilding.h */; };
+		0A7E3F0D184A320300C0AA08 /* STArea.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A4ADD4E184A1BA900EE71C1 /* STArea.h */; };
 		A5242B28178D435A0044C0B1 /* STFloor+Sierra.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A9944C178AA04600D76BBE /* STFloor+Sierra.h */; };
 		A5242B29178D435A0044C0B1 /* STAddress.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A99476178AA1B800D76BBE /* STAddress.h */; };
 		A5242B30178D435A0044C0B1 /* STSensor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A99484178AA1B800D76BBE /* STSensor.h */; };
@@ -75,10 +77,11 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				0AEC9D7C181FFD7D00CB05E3 /* STCity.h in CopyFiles */,
+				0A7E3F0D184A320300C0AA08 /* STArea.h in CopyFiles */,
+				0A7E3F0C184A31FA00C0AA08 /* STBuilding.h in CopyFiles */,
+				0A7E3F0B184A31F100C0AA08 /* STCity.h in CopyFiles */,
 				0A756229181FF1E000D9F674 /* STPoint.h in CopyFiles */,
 				0A756228181FF1D700D9F674 /* STFloor.h in CopyFiles */,
-				0A756227181FF1D000D9F674 /* STBuilding.h in CopyFiles */,
 				0A756226181FF1B700D9F674 /* STCountry.h in CopyFiles */,
 				A5D2445B179333D700191A6F /* STMeasurement.h in CopyFiles */,
 				A5242B28178D435A0044C0B1 /* STFloor+Sierra.h in CopyFiles */,
@@ -97,16 +100,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A4ADD4E184A1BA900EE71C1 /* STArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STArea.h; path = Models/STArea.h; sourceTree = "<group>"; };
+		0A4ADD4F184A1BA900EE71C1 /* STArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STArea.m; path = Models/STArea.m; sourceTree = "<group>"; };
+		0A4ADD51184A1BAA00EE71C1 /* STCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCity.h; path = Models/STCity.h; sourceTree = "<group>"; };
+		0A4ADD52184A1BAA00EE71C1 /* STCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCity.m; path = Models/STCity.m; sourceTree = "<group>"; };
+		0A4ADD54184A1BAA00EE71C1 /* STBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STBuilding.h; path = Models/STBuilding.h; sourceTree = "<group>"; };
+		0A4ADD55184A1BAA00EE71C1 /* STBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STBuilding.m; path = Models/STBuilding.m; sourceTree = "<group>"; };
 		0A756216181FF19600D9F674 /* STCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCountry.h; path = Models/STCountry.h; sourceTree = "<group>"; };
 		0A756217181FF19600D9F674 /* STCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCountry.m; path = Models/STCountry.m; sourceTree = "<group>"; };
 		0A756219181FF19600D9F674 /* STPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPoint.h; path = Models/STPoint.h; sourceTree = "<group>"; };
 		0A75621A181FF19600D9F674 /* STPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPoint.m; path = Models/STPoint.m; sourceTree = "<group>"; };
 		0A75621C181FF19600D9F674 /* STFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STFloor.h; path = Models/STFloor.h; sourceTree = "<group>"; };
 		0A75621D181FF19600D9F674 /* STFloor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STFloor.m; path = Models/STFloor.m; sourceTree = "<group>"; };
-		0A75621F181FF19600D9F674 /* STBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STBuilding.h; path = Models/STBuilding.h; sourceTree = "<group>"; };
-		0A756220181FF19600D9F674 /* STBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STBuilding.m; path = Models/STBuilding.m; sourceTree = "<group>"; };
-		0AEC9D79181FFD6300CB05E3 /* STCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCity.h; path = Models/STCity.h; sourceTree = "<group>"; };
-		0AEC9D7A181FFD6300CB05E3 /* STCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCity.m; path = Models/STCity.m; sourceTree = "<group>"; };
 		A5D244581793339A00191A6F /* STMeasurement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STMeasurement.h; path = Models/STMeasurement.h; sourceTree = "<group>"; };
 		A5D244591793339A00191A6F /* STMeasurement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STMeasurement.m; path = Models/STMeasurement.m; sourceTree = "<group>"; };
 		B4044CCE177AF1D900AB371D /* libSierraClassLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSierraClassLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,10 +233,12 @@
 		B4044CE1177AF1EF00AB371D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0AEC9D79181FFD6300CB05E3 /* STCity.h */,
-				0AEC9D7A181FFD6300CB05E3 /* STCity.m */,
-				0A75621F181FF19600D9F674 /* STBuilding.h */,
-				0A756220181FF19600D9F674 /* STBuilding.m */,
+				0A4ADD54184A1BAA00EE71C1 /* STBuilding.h */,
+				0A4ADD55184A1BAA00EE71C1 /* STBuilding.m */,
+				0A4ADD51184A1BAA00EE71C1 /* STCity.h */,
+				0A4ADD52184A1BAA00EE71C1 /* STCity.m */,
+				0A4ADD4E184A1BA900EE71C1 /* STArea.h */,
+				0A4ADD4F184A1BA900EE71C1 /* STArea.m */,
 				0A75621C181FF19600D9F674 /* STFloor.h */,
 				0A75621D181FF19600D9F674 /* STFloor.m */,
 				0A756219181FF19600D9F674 /* STPoint.h */,
@@ -392,14 +399,15 @@
 				0A75621B181FF19600D9F674 /* STPoint.m in Sources */,
 				B4044D5D177C5B3800AB371D /* UIView+Image.m in Sources */,
 				B4A9944E178AA04600D76BBE /* STFloor+Sierra.m in Sources */,
-				0A756221181FF19600D9F674 /* STBuilding.m in Sources */,
 				B4A99490178AA1B800D76BBE /* STAddress.m in Sources */,
 				B4A99497178AA1B800D76BBE /* STSensor.m in Sources */,
 				B4A99498178AA1B800D76BBE /* STSensorPoint.m in Sources */,
+				0A4ADD56184A1BAA00EE71C1 /* STBuilding.m in Sources */,
 				0A75621E181FF19600D9F674 /* STFloor.m in Sources */,
 				B4A99499178AA1B800D76BBE /* STStack.m in Sources */,
 				B4A9949A178AA1B800D76BBE /* STStackComponent.m in Sources */,
-				0AEC9D7B181FFD6300CB05E3 /* STCity.m in Sources */,
+				0A4ADD50184A1BA900EE71C1 /* STArea.m in Sources */,
+				0A4ADD53184A1BAA00EE71C1 /* STCity.m in Sources */,
 				B4A9949B178AA1B800D76BBE /* STWifiNetwork.m in Sources */,
 				B4A9949C178AA1B800D76BBE /* STWifiNetworkScanner.m in Sources */,
 				0A756218181FF19600D9F674 /* STCountry.m in Sources */,

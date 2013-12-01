@@ -17,6 +17,9 @@
     int count;
     
     float resolution;
+    
+    NSDate *heatmapDate;
+    
 }
 
 @end
@@ -55,7 +58,7 @@
     //HIDE THE LOADING SCREEN
     [loadingView setAlpha:0];
     [loadingView setHidden:YES];
-    
+
     heatmap = [[STHeatmap alloc] initWithSize:mapImageView.frame.size];
 }
 
@@ -123,13 +126,13 @@
 
 - (void)showLoadingScreen {
     [heatMapLegend setHidden:YES];
-    [heatMapDateOption setHidden:YES];
+    [heatMapDateOptionContainer setHidden:YES];
     [loadingActivity startAnimating];
     [loadingView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
         [loadingView setAlpha:0.9];
         [heatMapLegend setAlpha:0];
-        [heatMapDateOption setAlpha:0];
+        [heatMapDateOptionContainer setAlpha:0];
     } completion:^(BOOL finished) {
         //[heatMapLegend setHidden:YES];
     }];
@@ -141,7 +144,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         [loadingView setAlpha:0];
         [heatMapLegend setAlpha:1];
-        [heatMapDateOption setAlpha:1];
+        [heatMapDateOptionContainer setAlpha:1];
     } completion:^(BOOL finished) {
         [loadingActivity stopAnimating];
         [self.settingsBtn setEnabled:YES];
@@ -182,10 +185,14 @@
 
 - (IBAction)exportHeatMap:(id)sender {
     if ([MFMailComposeViewController canSendMail]) {
+        
         mailCont = [[MFMailComposeViewController alloc] init];
         [mailCont setSubject:[NSString stringWithFormat:@"Sierra Collect - Heatmap - %@", [infoDict objectForKey:SCHeatMapSettingsValue]]];
         [mailCont setMessageBody:@"" isHTML:NO];
-        [mailCont addAttachmentData:UIImagePNGRepresentation(generatedHeatImage) mimeType:@"image/png" fileName:@"heatmap.png"];
+        //sakib added
+        UIImage *newImage = [self blendImage:[mapImageView image] withImage:generatedHeatImage];
+        //
+        [mailCont addAttachmentData:UIImagePNGRepresentation(newImage) mimeType:@"image/png" fileName:@"heatmap.png"];
         UIGraphicsBeginImageContext(heatMapLegend.frame.size);
         [heatMapLegend.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -206,9 +213,12 @@
 }
 
 - (IBAction)saveHeatMap:(id)sender {
+    //sakib added
+    UIImage *newImage = [self blendImage:[mapImageView image] withImage:generatedHeatImage];
+    //
     NSMutableDictionary *settingsDict = [NSMutableDictionary dictionaryWithDictionary:infoDict];
-    [[SCWebDAVService shared] saveHeatMapToDocuments:generatedHeatImage forFloor:self.floorPlan withInformation:settingsDict];
-    [[SCWebDAVService shared] saveHeatmapToWebDav:generatedHeatImage forFloor:self.floorPlan withInformation:settingsDict];
+    [[SCWebDAVService shared] saveHeatMapToDocuments:newImage forFloor:self.floorPlan withInformation:settingsDict];
+    //[[SCWebDAVService shared] saveHeatmapToWebDav:generatedHeatImage forFloor:self.floorPlan withInformation:settingsDict];
 }
 
 #pragma mark MFMailComposeViewControllerDelegate
@@ -222,23 +232,30 @@
 #pragma mark SCHeatMapSettingsViewControllerDelegate
 
 - (void)closedController:(SCHeatMapSettingsViewController *)cont withSettings:(NSDictionary *)settings {
-    newGeneratedHeatMap = YES;
-    infoDict = settings;
+
     NSLog(@"Close With Dict: %@", settings);
     [cont dismissViewControllerAnimated:YES completion:^{
-        [self setTitle:[NSString stringWithFormat:@"Heatmap - %@", [settings objectForKey:SCHeatMapSettingsValue]]];
-        resolution = floorf(20-[[settings objectForKey:SCHeatMapSettingsResolution] floatValue]);
-        switch ([[settings objectForKey:SCHeatMapSettingsType] intValue]) {
-            case SCHeatMapTypeSensor: {
-                [self generateHeatMapforSensorType:[[SCAppCore shared] sensorTypeforWording:[settings objectForKey:SCHeatMapSettingsValue]]];
-                break;
-            } case SCHeatMapTypeWifi: {
-                [self generateHeatMapforWifi:[settings objectForKey:SCHeatMapSettingsValue]];
-                break;
-            } default:
-                break;
-        }
+        [self heatmapWithSettings:settings];
     }];
+}
+
+- (void)heatmapWithSettings:(NSDictionary *)settings {
+    newGeneratedHeatMap = YES;
+    infoDict = settings;
+    [self setTitle:[NSString stringWithFormat:@"Heatmap - %@", [settings objectForKey:SCHeatMapSettingsValue]]];
+    resolution = floorf(20-[[settings objectForKey:SCHeatMapSettingsResolution] floatValue]);
+    switch ([[settings objectForKey:SCHeatMapSettingsType] intValue]) {
+        case SCHeatMapTypeSensor: {
+            [self generateHeatMapforSensorType:[[SCAppCore shared] sensorTypeforWording:[settings objectForKey:SCHeatMapSettingsValue]]
+                                       forTime:[settings objectForKey:SCHeatMapSettingsTime]];
+            break;
+        } case SCHeatMapTypeWifi: {
+            [self generateHeatMapforWifi:[settings objectForKey:SCHeatMapSettingsValue]
+                                 forTime:[settings objectForKey:SCHeatMapSettingsTime]];
+            break;
+        } default:
+            break;
+    }
 }
 
 - (void)dismissController:(SCHeatMapSettingsViewController *)cont {
@@ -262,7 +279,8 @@
 
 #pragma mark HeatMapPreparation 
 
-- (void)generateHeatMapforWifi:(NSString *)_wifiName {
+- (void)generateHeatMapforWifi:(NSString *)_wifiName forTime:(NSDate *)dt{
+    heatmapDate = [self getLatestDateWithDate:dt];
     NSLog(@"Generate HeatMap for Wifi: %@", _wifiName);
     avgValue = 0;
     count = 0;
@@ -271,13 +289,15 @@
         avgValue = 0;
         count = 0;
         for (STSensorPoint *sensorPoint in [point.sensorPoints allObjects]) {
-            for (STWifiNetwork *wifi in [sensorPoint.wifiNetworks allObjects]) {
-                if ([wifi.ssid isEqualToString:_wifiName]) {
-                    int level = [wifi.signalLevel substringToIndex:(wifi.signalLevel.length -4)].floatValue;
-                    avgValue += level;
+            if ([self isSameDay:[sensorPoint time] otherDay:heatmapDate]) {
+                for (STWifiNetwork *wifi in [sensorPoint.wifiNetworks allObjects]) {
+                    if ([wifi.ssid isEqualToString:_wifiName]) {
+                        int level = [wifi.signalLevel substringToIndex:(wifi.signalLevel.length -4)].floatValue;
+                        avgValue += level;
+                    }
                 }
+                count++;
             }
-            count++;
         }
         avgValue = avgValue/count;
 //        NSLog(@"\nMapped Lng %f to x: %f\nMapped Lat %f to y: %f\nwith avg Level Value: %f for wifi: %@",
@@ -287,12 +307,15 @@
 //               [self getYforPoint:point],
 //               avgValue,
 //              _wifiName);
-        [heatpoints addObject:[[STHeatmapPoint alloc] initWithPosition:CGPointMake([self getXforPoint:point], [self getYforPoint:point]) value:avgValue]];
+        if (count > 0) {
+            [heatpoints addObject:[[STHeatmapPoint alloc] initWithPosition:CGPointMake([self getXforPoint:point], [self getYforPoint:point]) value:avgValue]];
+        }
     }
     [self generateHeatmap];
 }
 
-- (void)generateHeatMapforSensorType:(SCSensorType)_type {
+- (void)generateHeatMapforSensorType:(SCSensorType)_type forTime:(NSDate *)dt {
+    heatmapDate = [self getLatestDateWithDate:dt];
     NSLog(@"Generate Heatmap for Sensor: %@", [[SCAppCore shared] wordingForSensorType:_type]);
     avgValue = 0;
     count = 0;
@@ -301,12 +324,14 @@
         avgValue = 0;
         count = 0;
         for (STSensorPoint *sensorPoint in [point.sensorPoints allObjects]) {
-            for (STMeasurement *meas in [sensorPoint.measurements allObjects]) {
-                if (meas.sensor.type.intValue == _type) {
-                    avgValue += meas.value.floatValue;
+            if ([self isSameDay:[sensorPoint time] otherDay:heatmapDate]) {
+                for (STMeasurement *meas in [sensorPoint.measurements allObjects]) {
+                    if (meas.sensor.type.intValue == _type) {
+                        avgValue += meas.value.floatValue;
+                    }
                 }
+                count++;
             }
-            count++;
         }
         avgValue = avgValue/count;
 //        NSLog(@"\nMapped Lng %f to x: %f\nMapped Lat %f to y: %f\nwith avg Value: %f",
@@ -315,7 +340,9 @@
 //                                point.lattitude.floatValue,
 //                                [self getYforPoint:point],
 //                                avgValue);
-        [heatpoints addObject:[[STHeatmapPoint alloc] initWithPosition:CGPointMake([self getXforPoint:point], [self getYforPoint:point]) value:avgValue]];
+        if (count > 0) {
+            [heatpoints addObject:[[STHeatmapPoint alloc] initWithPosition:CGPointMake([self getXforPoint:point], [self getYforPoint:point]) value:avgValue]];
+        }
     }
     [self generateHeatmap];
 }
@@ -353,23 +380,33 @@
 }
 
 - (UIImage*) maskImage:(UIImage *)image withMask:(UIImage *)maskImage {
-	CGImageRef maskRef = maskImage.CGImage;
-	CGImageRef mask = CGImageMaskCreate(CGImageGetWidth(maskRef),
+    CGImageRef imageRef = image.CGImage;
+    CGImageRef maskRef = maskImage.CGImage;
+    
+    CGImageRef mask = CGImageMaskCreate(CGImageGetWidth(maskRef),
                                         CGImageGetHeight(maskRef),
                                         CGImageGetBitsPerComponent(maskRef),
                                         CGImageGetBitsPerPixel(maskRef),
                                         CGImageGetBytesPerRow(maskRef),
-                                        CGImageGetDataProvider(maskRef), NULL, false);
+                                        CGImageGetDataProvider(maskRef),
+                                        NULL, // decode should be NULL
+                                        FALSE // shouldInterpolate
+                                        );
     
-	CGImageRef masked = CGImageCreateWithMask([image CGImage], mask);
-	return [UIImage imageWithCGImage:masked];
+    CGImageRef masked = CGImageCreateWithMask(imageRef, mask);
+    CGImageRelease(mask);
+    UIImage *maskedImage = [UIImage imageWithCGImage:masked];
+    CGImageRelease(masked);
+    return maskedImage;
 }
 
 #pragma mark STHeatMapDelegate 
 
 - (void)heatmap:(STHeatmap*)actHeatmap didGenerateImage:(UIImage*)image {
     NSLog(@"generated heatmap image");
-    generatedHeatImage = [self maskImage:image withMask:[UIImage imageNamed:[NSString stringWithFormat:@"%@", [self.floorPlan.relatedFile stringByReplacingOccurrencesOfString:@".pdf" withString:@""]]]];
+    NSString *mImgName = [NSString stringWithFormat:@"%@", [self.floorPlan.relatedFile stringByReplacingOccurrencesOfString:@".pdf" withString:@""]];
+    UIImage *mImg = [UIImage imageNamed:mImgName];
+    generatedHeatImage = [self maskImage:image withMask:mImg];
     [self setHeatMapImageOverlay:generatedHeatImage];
  
 }
@@ -401,31 +438,100 @@
         [self.view addSubview:heatMapLegend];
         
         //Sakib - Generate buttons for dates
-        NSMutableArray *arrDate = [[NSMutableArray alloc] init];
-        NSDate *currDate = [NSDate date];
-        [arrDate addObject:currDate];
-        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-86400]];
-        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-172800]];
-        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-86400]];
-        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-172800]];
-        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-86400]];
-        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-172800]];
-        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-86400]];
-        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-172800]];
-        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-86400]];
-        [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-172800]];
-        [heatMapDateOption setHidden:YES];
-        heatMapDateOption = [[SCHeatMapDateOptionView alloc] initWithFrame:CGRectMake(870, 400, 0, 0) dateList:arrDate selectedDate:currDate];
-        [self.view addSubview:heatMapDateOption];
+        [heatMapDateOptionContainer setHidden:YES];
+        heatMapDateOptionContainer = [[UIView alloc] initWithFrame:CGRectMake(870, 400, 100, 206)];
+        [heatMapDateOptionContainer setBackgroundColor:[UIColor clearColor]];
+        
+        heatMapDateOption = [[SCHeatMapDateViewController alloc] init];
+        [heatMapDateOption setDelegate:self];
+        [heatMapDateOption setSettings:infoDict];
+        [heatMapDateOption setHeatmapDate:heatmapDate];
+        [heatMapDateOption setCollectedDates:[self getAllAvailableDates]];
+
+        [self.view addSubview:heatMapDateOptionContainer];
+        [heatMapDateOptionContainer addSubview:heatMapDateOption.view];
     } else {
         [heatMapLegend setHidden:YES];
-        [heatMapDateOption setHidden:YES];
+        [heatMapDateOptionContainer setHidden:YES];
     }
-    
-    
     
     
     [self hideLoadingScreen];
 }
 
+-(NSMutableArray *) getAllAvailableDates {
+    BOOL dateAlreadyAdded = NO;
+    
+    NSMutableArray *arrDate = [[NSMutableArray alloc] init];
+    
+    for (STPoint *point in self.floorPlan.points) {
+        for (STSensorPoint *sensorPoint in [point.sensorPoints allObjects]) {
+            for (NSDate *dt in arrDate) {
+                if ([self isSameDay:[sensorPoint time] otherDay:dt]) {
+                    dateAlreadyAdded = YES;
+                    break;
+                }
+                
+            }
+            if (!dateAlreadyAdded) {
+                [arrDate addObject:[sensorPoint time]];
+            }
+            dateAlreadyAdded = NO;
+        }
+    }
+    
+    [arrDate sortUsingSelector:@selector(compare:)];
+    
+    /*NSDate *currDate = [NSDate date];
+    [arrDate addObject:currDate];
+    [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-86400]];
+    [arrDate addObject:(NSDate *)[currDate dateByAddingTimeInterval:-172800]];*/
+    
+    return arrDate;
+}
+
+
+-(BOOL)isSameDay:(NSDate*)date1 otherDay:(NSDate*)date2 {
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    NSDateComponents* comp1 = [calendar components:unitFlags fromDate:date1];
+    NSDateComponents* comp2 = [calendar components:unitFlags fromDate:date2];
+    
+    return [comp1 day]   == [comp2 day] &&
+    [comp1 month] == [comp2 month] &&
+    [comp1 year]  == [comp2 year];
+}
+
+-(NSDate *) getLatestDateWithDate:(NSDate*)dt {
+
+    for (STPoint *point in self.floorPlan.points) {
+        for (STSensorPoint *sensorPoint in [point.sensorPoints allObjects]) {
+            if ([self isSameDay:[sensorPoint time] otherDay:dt]) {
+                return dt;
+            }
+        }
+    }
+    
+    NSDate *maxDate = [[[self getAllAvailableDates] sortedArrayUsingSelector:@selector(compare:)] lastObject];
+    
+    return maxDate;
+}
+
+-(UIImage *)blendImage:(UIImage *)bottomImage withImage:(UIImage *)topImage {
+    
+    CGSize newSize = CGSizeMake(bottomImage.size.width, bottomImage.size.height);
+    UIGraphicsBeginImageContext( newSize );
+    
+    // Use existing opacity as is
+    [bottomImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    // Apply supplied opacity
+    [topImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height) blendMode:kCGBlendModeNormal alpha:1.0];
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 @end

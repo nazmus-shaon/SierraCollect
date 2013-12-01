@@ -103,8 +103,7 @@
     }
     
 }
-
--(void)dhcpClientsLoaded:(NSMutableArray *)dhcpClients{
+- (void)dhcpClientsLoaded:(NSMutableArray *)dhcpClients{
     NSLog(@"+++ found %d dhcp clients", [dhcpClients count]);
     macAddressArray = dhcpClients;
 }
@@ -120,7 +119,6 @@
     saveContinuousSensingPoint = NO;
     
 }
-
 - (void)loadDataFromServerForContinuousSensingPoint:(NSString *)macAddressParam {
     NSLog(@"+++ csMacAddress: %@", macAddressParam);
 //    [[SCDataService shared] getWifisensorsAddTarget:self action:@selector(wifiSensorsLoaded:)];
@@ -130,8 +128,7 @@
     saveContinuousSensingPoint = YES;
     
 }
-
--(void)continuousMeasurementsLoaded:(NSMutableArray *)continuousMeasurements{
+- (void)continuousMeasurementsLoaded:(NSMutableArray *)continuousMeasurements{
     NSLog(@"+++ DetailView has found %d continuous measurements", [continuousMeasurements count]);
     for (STMeasurement *m in continuousMeasurements) {
         NSLog(@"+++ time: %@", m.created);
@@ -173,7 +170,6 @@
     [self saveContinuousSensingPointForAnnotaton:currentCSAnnotation];
 
 }
-
 - (void)wifiSensorsLoaded:(NSMutableArray *)wifiSensors {
     isWifiSensorCollected = TRUE;
     wifiSensorArray = wifiSensors;
@@ -249,13 +245,13 @@
         annotation.title = [NSString stringWithFormat:@"RaspberryPiPoint"];
         annotation.subtitle = [NSString stringWithFormat:@"Coordinate %.3f %.3f", [annotation coordinate].latitude, [annotation coordinate].longitude];
         
-        self.statusLabel.text = @"Raspberry Pi placed";
-        //[_activityIndicator startAnimating];
-        //[_activityIndicator setHidden:NO];
+        self.statusLabel.text = @"Placing Raspberry Pi...";
+        [_activityIndicator startAnimating];
+        [_activityIndicator setHidden:NO];
         
         //[self loadDataFromServerForCheckpoint:YES];//******** Woody
         currentAnnotation = annotation;
-        //[self saveCheckPointForAnnotaton:annotation];
+        [self saveRPPointForAnnotaton:annotation];
     }
     
     //Waspmote Point
@@ -267,13 +263,13 @@
         annotation.title = [NSString stringWithFormat:@"WaspmotePoint"];
         annotation.subtitle = [NSString stringWithFormat:@"Coordinate %.3f %.3f", [annotation coordinate].latitude, [annotation coordinate].longitude];
         
-        self.statusLabel.text = @"Meshlium placed";
-        //[_activityIndicator startAnimating];
-        //[_activityIndicator setHidden:NO];
+        self.statusLabel.text = @"Placing Meshlium...";
+        [_activityIndicator startAnimating];
+        [_activityIndicator setHidden:NO];
         
         //[self loadDataFromServerForCheckpoint:YES];//******** Woody
         currentAnnotation = annotation;
-        //[self saveCheckPointForAnnotaton:annotation];
+        [self saveWMPointForAnnotaton:annotation];
     }
     
     //Continuous sensing point
@@ -330,7 +326,6 @@
         }
     }
 }
-
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     //NSLog(@"+++ %@", [macAddressArray objectAtIndex:buttonIndex]);
     if (buttonIndex == -1) {
@@ -348,7 +343,6 @@
     }
 
 }
-
 - (RMMapLayer *)mapView:(RMMapView *)map layerForAnnotation:(RMAnnotation *)annotation {
     //Actually draw checkpoint marker / continuousSensingPoint marker / Raspberry Pi Marker
     
@@ -624,6 +618,70 @@
     
     NSError *error = nil;
     [self.managedObjectContext saveToPersistentStore:&error];
+}
+- (void)saveRPPointForAnnotaton:(RMAnnotation *)annotation {
+    
+    //Save checkpoint to database
+    //Make db object for Point
+    STPoint *point = [NSEntityDescription insertNewObjectForEntityForName:@"STPoint" inManagedObjectContext:self.managedObjectContext];
+    point.lattitude = [NSNumber numberWithDouble:[annotation coordinate].latitude];
+    point.longitude = [NSNumber numberWithDouble:[annotation coordinate].longitude];
+    point.pointType = [NSNumber numberWithInt:3];
+    
+    //Also make db object for Sensor-point for this Point
+    /*STSensorPoint *ssp = [NSEntityDescription insertNewObjectForEntityForName:@"STSensorPoint" inManagedObjectContext:self.managedObjectContext];
+    [ssp setTime:[NSDate date]];
+    
+    // *********  Woody *********
+    NSLog(@"******* saveCheckPointForAnnotaton has %d otherSensorArray objects and %d wifiSensor objects", [otherSensorArray count], [wifiSensorArray count]);
+    [ssp setWifiNetworks:[NSSet setWithArray:wifiSensorArray]];
+    [ssp setMeasurements:[NSSet setWithArray:otherSensorArray]];
+    // *********  Woody *********
+    
+    [point addSensorPointsObject:ssp];*/
+    [_floorPlan addPointsObject:point];
+    [point setFloor:_floorPlan];
+    //[ssp setPoint:point];
+    [stPoints addObject:point];
+    
+    NSError *error = nil;
+    [self.managedObjectContext saveToPersistentStore:&error];
+    
+    self.statusLabel.text = @"Raspberry Pi placed";
+    [_activityIndicator stopAnimating];
+    [_activityIndicator setHidden:YES];
+}
+- (void)saveWMPointForAnnotaton:(RMAnnotation *)annotation {
+    
+    //Save checkpoint to database
+    //Make db object for Point
+    STPoint *point = [NSEntityDescription insertNewObjectForEntityForName:@"STPoint" inManagedObjectContext:self.managedObjectContext];
+    point.lattitude = [NSNumber numberWithDouble:[annotation coordinate].latitude];
+    point.longitude = [NSNumber numberWithDouble:[annotation coordinate].longitude];
+    point.pointType = [NSNumber numberWithInt:4];
+    
+    //Also make db object for Sensor-point for this Point
+    /*STSensorPoint *ssp = [NSEntityDescription insertNewObjectForEntityForName:@"STSensorPoint" inManagedObjectContext:self.managedObjectContext];
+     [ssp setTime:[NSDate date]];
+     
+     // *********  Woody *********
+     NSLog(@"******* saveCheckPointForAnnotaton has %d otherSensorArray objects and %d wifiSensor objects", [otherSensorArray count], [wifiSensorArray count]);
+     [ssp setWifiNetworks:[NSSet setWithArray:wifiSensorArray]];
+     [ssp setMeasurements:[NSSet setWithArray:otherSensorArray]];
+     // *********  Woody *********
+     
+     [point addSensorPointsObject:ssp];*/
+    [_floorPlan addPointsObject:point];
+    [point setFloor:_floorPlan];
+    //[ssp setPoint:point];
+    [stPoints addObject:point];
+    
+    NSError *error = nil;
+    [self.managedObjectContext saveToPersistentStore:&error];
+    
+    self.statusLabel.text = @"Meshlium placed";
+    [_activityIndicator stopAnimating];
+    [_activityIndicator setHidden:YES];
 }
 - (void)saveContinuousSensingPointForAnnotaton:(RMAnnotation *)annotation {
     //self.statusLabel.text = @"Sensor Data Fetched";
@@ -914,18 +972,6 @@
         [self loadDataFromServerForCheckpoint:NO];
     }
 }
-- (void)editTitleClicked:(NSString *)title {
-    NSLog(@"Title: %@", title);
-    for (STPoint *sp in stPoints) {
-        if ([sp.lattitude isEqualToNumber:[NSNumber numberWithDouble:[selectedPoint coordinate].latitude]]
-            && [sp.longitude isEqualToNumber:[NSNumber numberWithDouble:[selectedPoint coordinate].longitude]]) {
-            [sp setName:title];
-        }
-    }
-    NSError *error = nil;
-    [self.managedObjectContext saveToPersistentStore:&error];
-}
-
 
 #pragma mark Other Helper functions
 - (void)drawingModeChanged:(id)sender {
@@ -944,6 +990,17 @@
         self.statusLabel.text = @"Tap to set checkpoints on the map"; // checkpoint
     }
     
+}
+- (void)editTitleClicked:(NSString *)title {
+    NSLog(@"Title: %@", title);
+    for (STPoint *sp in stPoints) {
+        if ([sp.lattitude isEqualToNumber:[NSNumber numberWithDouble:[selectedPoint coordinate].latitude]]
+            && [sp.longitude isEqualToNumber:[NSNumber numberWithDouble:[selectedPoint coordinate].longitude]]) {
+            [sp setName:title];
+        }
+    }
+    NSError *error = nil;
+    [self.managedObjectContext saveToPersistentStore:&error];
 }
 
 #pragma mark Application flow

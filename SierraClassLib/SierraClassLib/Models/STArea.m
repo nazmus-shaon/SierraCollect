@@ -1,22 +1,21 @@
 //
-//  STBuilding.m
+//  STArea.m
 //  SierraClassLib
 //
 //  Created by Nazmus Shaon on 30/11/13.
 //  Copyright (c) 2013 Lehrstuhl für Angewandte Softwaretechnik. All rights reserved.
 //
 
-#import "STBuilding.h"
 #import "STArea.h"
-#import "STFloor.h"
+#import "STBuilding.h"
+#import "STCity.h"
 
 
-@implementation STBuilding
+@implementation STArea
 
-@dynamic details;
+@dynamic id;
 @dynamic name;
-@dynamic number;
-@dynamic area;
-@dynamic floors;
+@dynamic city;
+@dynamic buildings;
 
 @end

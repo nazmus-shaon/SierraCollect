@@ -8,18 +8,24 @@
         <attribute name="zipcode" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="city" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STCity" inverseName="addresses" inverseEntity="STCity" syncable="YES"/>
     </entity>
+    <entity name="STArea" representedClassName="STArea" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="buildings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STBuilding" inverseName="area" inverseEntity="STBuilding" syncable="YES"/>
+        <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="STCity" inverseName="areas" inverseEntity="STCity" syncable="YES"/>
+    </entity>
     <entity name="STBuilding" representedClassName="STBuilding" syncable="YES">
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="city" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STCity" inverseName="buildings" inverseEntity="STCity" syncable="YES"/>
+        <relationship name="area" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STArea" inverseName="buildings" inverseEntity="STArea" syncable="YES"/>
         <relationship name="floors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STFloor" inverseName="building" inverseEntity="STFloor" syncable="YES"/>
     </entity>
     <entity name="STCity" representedClassName="STCity" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="addresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STAddress" inverseName="city" inverseEntity="STAddress" syncable="YES"/>
-        <relationship name="buildings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STBuilding" inverseName="city" inverseEntity="STBuilding" syncable="YES"/>
+        <relationship name="areas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STArea" inverseName="city" inverseEntity="STArea" syncable="YES"/>
         <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="STCountry" inverseName="cities" inverseEntity="STCountry" syncable="YES"/>
     </entity>
     <entity name="STCountry" representedClassName="STCountry" syncable="YES">
@@ -104,6 +110,7 @@
     </entity>
     <elements>
         <element name="STAddress" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="STArea" positionX="0" positionY="0" width="0" height="0"/>
         <element name="STBuilding" positionX="0" positionY="0" width="0" height="0"/>
         <element name="STCity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="STCountry" positionX="0" positionY="0" width="0" height="0"/>

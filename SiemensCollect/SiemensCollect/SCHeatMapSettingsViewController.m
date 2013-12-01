@@ -60,8 +60,8 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"There's no Data available so we cannot create a Meatmap" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
     } else {
-        NSArray *valueArray = [NSArray arrayWithObjects:[NSNumber numberWithFloat:_resoultionSlider.value], [NSNumber numberWithInt:[selectedIndexPath section]], [[dataArray objectAtIndex:selectedIndexPath.section] objectAtIndex:selectedIndexPath.row], nil];
-        NSArray *keyArray = [NSArray arrayWithObjects:SCHeatMapSettingsResolution, SCHeatMapSettingsType, SCHeatMapSettingsValue, nil];
+        NSArray *valueArray = [NSArray arrayWithObjects:[NSNumber numberWithFloat:_resoultionSlider.value], [NSNumber numberWithInt:[selectedIndexPath section]], [[dataArray objectAtIndex:selectedIndexPath.section] objectAtIndex:selectedIndexPath.row], [NSDate date], nil];
+        NSArray *keyArray = [NSArray arrayWithObjects:SCHeatMapSettingsResolution, SCHeatMapSettingsType, SCHeatMapSettingsValue, SCHeatMapSettingsTime, nil];
         NSDictionary *dict = [NSDictionary dictionaryWithObjects:valueArray forKeys:keyArray];
         [self.delegate closedController:self withSettings:dict];
     }

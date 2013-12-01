@@ -74,8 +74,6 @@
     
     
     //SETUP THE CITY
-    
-    
     STCity *munich = [NSEntityDescription insertNewObjectForEntityForName:@"STCity" inManagedObjectContext:self.managedObjectContext];
     [munich setName:@"Munich"];
     
@@ -92,6 +90,28 @@
     [moscow setName:@"Moscow"];
     
     
+    //SETUP THE AREA
+    STArea *mchp = [NSEntityDescription insertNewObjectForEntityForName:@"STArea" inManagedObjectContext:self.managedObjectContext];
+    [mchp setName:@"MCH P"];
+    
+    
+    //SETUP THE BUILDING
+    STBuilding *building48 = [NSEntityDescription insertNewObjectForEntityForName:@"STBuilding" inManagedObjectContext:self.managedObjectContext];
+    [building48 setName:@"Building 48"];
+    building48.number = [[NSNumber alloc] initWithInt:48];
+    
+    STBuilding *building10 = [NSEntityDescription insertNewObjectForEntityForName:@"STBuilding" inManagedObjectContext:self.managedObjectContext];
+    [building10 setName:@"Building 10"];
+    building10.number = [[NSNumber alloc] initWithInt:10];
+
+    
+    /*STBuilding *buildingFmi = [NSEntityDescription insertNewObjectForEntityForName:@"STBuilding" inManagedObjectContext:self.managedObjectContext];
+     [buildingFmi setName:@"TUM FMI"];
+     buildingFmi.number = [[NSNumber alloc] initWithInt:0];
+     
+     [barcelona addBuildingsObject:buildingFmi];
+     [buildingFmi setCity:barcelona];*/
+    
     //Add City to Country
     [germany addCitiesObject:munich];
     [portugal addCitiesObject:lisbon];
@@ -99,19 +119,16 @@
     [uk addCitiesObject:london];
     [russia addCitiesObject:moscow];
     
-    STBuilding *buildingMchp = [NSEntityDescription insertNewObjectForEntityForName:@"STBuilding" inManagedObjectContext:self.managedObjectContext];
-    [buildingMchp setName:@"Mch P"];
-    buildingMchp.number = [[NSNumber alloc] initWithInt:48];
+    //Add Area to City
+    [munich addAreasObject:mchp];
+    [mchp setCity:munich];
     
-    [munich addBuildingsObject:buildingMchp];
-    [buildingMchp setCity:munich];
+    //Add Building to Area
+    [mchp addBuildingsObject:building48];
+    [building48 setArea:mchp];
     
-    STBuilding *buildingFmi = [NSEntityDescription insertNewObjectForEntityForName:@"STBuilding" inManagedObjectContext:self.managedObjectContext];
-    [buildingFmi setName:@"TUM FMI"];
-    buildingFmi.number = [[NSNumber alloc] initWithInt:0];
-    
-    [barcelona addBuildingsObject:buildingFmi];
-    [buildingFmi setCity:barcelona];
+    [mchp addBuildingsObject:building10];
+    [building10 setArea:mchp];
     
     //STEP 1 -- Read Standard PDFs stored in the project
     NSArray *pdfs = [[NSBundle mainBundle] pathsForResourcesOfType:@"pdf" inDirectory:nil];
@@ -120,9 +137,10 @@
         NSURL *url=[NSURL fileURLWithPath:str];
         NSArray *parts = [[url lastPathComponent] componentsSeparatedByString: @"_"];
         NSString *partCity = [parts objectAtIndex:0];
-        NSString *partBuilding = [parts objectAtIndex:1];
-        NSString *partFloor = [parts objectAtIndex:2];
-        NSString *partFloorName = [[parts objectAtIndex:3] substringToIndex:[[parts objectAtIndex:3] rangeOfString:@"."].location];
+        NSString *partArea = [parts objectAtIndex:1];
+        NSString *partBuilding = [parts objectAtIndex:2];
+        NSString *partFloor = [parts objectAtIndex:3];
+        NSString *partFloorName = [[parts objectAtIndex:4] substringToIndex:[[parts objectAtIndex:4] rangeOfString:@"."].location];
         
         STFloor *flr = [NSEntityDescription insertNewObjectForEntityForName:@"STFloor" inManagedObjectContext:self.managedObjectContext];
         
@@ -136,13 +154,16 @@
         [flr setName: partFloorName];
         [flr setRelatedFile: [url lastPathComponent]];
         
-        if ([partCity isEqualToString:@"MUN"] && [partBuilding isEqualToString:@"MCHP"]) {
-            [buildingMchp addFloorsObject:flr];
-            [flr setBuilding:buildingMchp];
-        } else if ([partCity isEqualToString:@"BAR"] && [partBuilding isEqualToString:@"FMI"]) {
+        if ([partCity isEqualToString:@"MUN"] && [partArea isEqualToString:@"MCHP"] && [partBuilding isEqualToString:@"48"]) {
+            [building48 addFloorsObject:flr];
+            [flr setBuilding:building48];
+        } else if ([partCity isEqualToString:@"MUN"] && [partArea isEqualToString:@"MCHP"] && [partBuilding isEqualToString:@"10"]) {
+            [building10 addFloorsObject:flr];
+            [flr setBuilding:building10];
+        }/*else if ([partCity isEqualToString:@"BAR"] && [partBuilding isEqualToString:@"FMI"]) {
             [buildingFmi addFloorsObject:flr];
             [flr setBuilding:buildingFmi];
-        }
+        }*/
     }
     
     //Add two mor buildings:
@@ -175,7 +196,7 @@
     NSArray *retAry = [self.managedObjectContext executeFetchRequest:request error:&error];
     
     for (STBuilding *building in retAry) {
-        if ([[(STCity *)building name] isEqualToString:@"Mch P"]) {
+        if ([[(STCity *)building name] isEqualToString:@"Building 48"]) {
             return [self getFloorplansForBuilding: building];
         }
     }
@@ -209,14 +230,29 @@
     return retAry;
 }
 
-- (NSArray*)getBuildingsForCity:(STCity*)city {
+- (NSArray*)getAreasForCity:(STCity*)city {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STArea"];
+    
+    NSError *error;
+    NSArray *retAry = [self.managedObjectContext executeFetchRequest:request error:&error];
+    NSMutableArray *filteredArray = [NSMutableArray array];
+    for (STArea *area in retAry) {
+        if ((STCity *)[area city] == city) {
+            [filteredArray addObject:area];
+        }
+    }
+    
+    return (NSArray *)filteredArray;
+}
+
+- (NSArray*)getBuildingsForArea:(STArea*)area {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STBuilding"];
     
     NSError *error;
     NSArray *retAry = [self.managedObjectContext executeFetchRequest:request error:&error];
     NSMutableArray *filteredArray = [NSMutableArray array];
     for (STBuilding *building in retAry) {
-        if ((STCity *)[building city] == city) {
+        if ((STArea *)[building area] == area) {
             [filteredArray addObject:building];
         }
     }

@@ -88,11 +88,13 @@
     
     float width = 340;
     float height = 586;
+    //UIImage *img;
     
     for (int i = 0; i < [[[SCDataService shared] getLastUpdatedFloorplans] count]; i++) {
         SCLatestRecordView *view = [[SCLatestRecordView alloc] initWithFrame:CGRectMake(i*width, 0, width, height) andFloorplan:[[[SCDataService shared] getLastUpdatedFloorplans] objectAtIndex:i]];
         [view setDelegate:self];
         [_latesRecordSrollView addSubview:view];
+        
     }
     [_latesRecordSrollView setContentSize:CGSizeMake([[[SCDataService shared] getLastUpdatedFloorplans] count]*width, height-10)];
     

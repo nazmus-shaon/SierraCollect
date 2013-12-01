@@ -13,9 +13,10 @@
 #import "SCHeatMapSettingsViewController.h"
 #import "SCWebDAVService.h"
 #import "SCHeatMapLegendView.h"
-#import "SCHeatMapDateOptionView.h"
+#import "SCHeatMapDateViewController.h"
 
-@interface SCHeatMapViewController : SCAbstractViewController <STHeatmapDelegate, UIScrollViewDelegate, MFMailComposeViewControllerDelegate, SCHeatMapSettingsViewControllerDelegate> {
+
+@interface SCHeatMapViewController : SCAbstractViewController <STHeatmapDelegate, UIScrollViewDelegate, MFMailComposeViewControllerDelegate, SCHeatMapSettingsViewControllerDelegate, SCHeatMapDateViewControllerDelegate> {
     STHeatmap *heatmap;
     
     NSMutableArray *heatpoints;
@@ -36,13 +37,17 @@
     BOOL newGeneratedHeatMap;
     
     SCHeatMapLegendView *heatMapLegend;
-    SCHeatMapDateOptionView *heatMapDateOption;
+    UIView *heatMapDateOptionContainer;
+    SCHeatMapDateViewController *heatMapDateOption;
+    
 }
 
 - (IBAction)exportHeatMap:(id)sender;
 - (IBAction)goToSettings:(id)sender;
 - (IBAction)saveHeatMap:(id)sender;
 
+
+- (void) heatmapWithSettings:(NSDictionary *)settings;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *exportBtn;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsBtn;
@@ -52,5 +57,7 @@
 //@property (strong, nonatomic) UIImage *image;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
+
 
 @end

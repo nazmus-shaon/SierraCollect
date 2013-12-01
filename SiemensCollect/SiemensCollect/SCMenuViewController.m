@@ -30,6 +30,8 @@
         header = @"Countries";
     } else if (_menuKind == SCMenuViewControllerCity) {
         header = @"Cities";
+    } else if (_menuKind == SCMenuViewControllerArea) {
+        header = @"Areas";
     } else if (_menuKind == SCMenuViewControllerBuilding) {
         header = @"Buildings"; 
     }
@@ -70,11 +72,17 @@
         [demo setMenuKind:SCMenuViewControllerCity];
         [self.navigationController pushViewController:demo animated:YES];
         
-        
     } else if (_menuKind == SCMenuViewControllerCity) {
         SCMenuViewController *demo = [self.storyboard instantiateViewControllerWithIdentifier:@"lefterMenuCont"];
         demo.title = [[_data objectAtIndex:indexPath.row] name];
-        [demo setData:[[SCDataService shared] getBuildingsForCity:[_data objectAtIndex:indexPath.row]]];
+        [demo setData:[[SCDataService shared] getAreasForCity:[_data objectAtIndex:indexPath.row]]];
+        [demo setMenuKind:SCMenuViewControllerArea];
+        [self.navigationController pushViewController:demo animated:YES];
+        
+    } else if (_menuKind == SCMenuViewControllerArea) {
+        SCMenuViewController *demo = [self.storyboard instantiateViewControllerWithIdentifier:@"lefterMenuCont"];
+        demo.title = [[_data objectAtIndex:indexPath.row] name];
+        [demo setData:[[SCDataService shared] getBuildingsForArea:[_data objectAtIndex:indexPath.row]]];
         [demo setMenuKind:SCMenuViewControllerBuilding];
         [self.navigationController pushViewController:demo animated:YES];
         

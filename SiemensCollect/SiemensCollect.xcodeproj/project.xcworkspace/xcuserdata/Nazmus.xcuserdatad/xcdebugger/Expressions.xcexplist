@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[SCHeatMapDateOptionView dateButtonClicked:]:SCHeatMapDateOptionView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "cSettings">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SCHeatMapDateViewController initWithNibName:bundle:]:SCHeatMapDateViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.view">
+            </PersistentString>
+            <PersistentString
+               value = "self.view.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SCHeatMapDateOptionView initWithFrame:dateList:selectedDate:]:SCHeatMapDateOptionView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[collectedDates objectAtIndex:i]">
+            </PersistentString>
+            <PersistentString
+               value = "[(NSDate *)[collectedDates objectAtIndex:i] isEqualToDate: heatmapDate]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SCHeatMapViewController maskImage:withMask:]:SCHeatMapViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "CGImageGetWidth(maskRef)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SCHeatMapViewController getXforPoint:]:SCHeatMapViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "heatpoints">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SCHeatMapViewController saveHeatMap:]:SCHeatMapViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.floorPlan.relatedFile">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SCLatestRecordView initWithFrame:andFloorplan:]:SCLatestRecordView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[[floorplan.relatedFile componentsSeparatedByString:@&quot;.&quot;] objectAtIndex:0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SCHeatMapViewController setHeatMapImageOverlay:]:SCHeatMapViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "heatMapDateOption.view.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SCHeatMapSettingsViewController goGenerateHeatMap:]:SCHeatMapSettingsViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[SCHeatMapViewController generateHeatMapforSensorType:forTime:]:SCHeatMapViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.floorPlan.points">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SCMainViewController otherSensorsLoaded:]:SCMainViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[measurement.sensor.type integerValue]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SCLatestRecordView floorPlanClicked]:SCLatestRecordView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[SCHeatMapViewController heatmap:didGenerateImage:]:SCHeatMapViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[UIImage imageNamed:[NSString stringWithFormat:@&quot;%@&quot;, [self.floorPlan.relatedFile stringByReplacingOccurrencesOfString:@&quot;.pdf&quot; withString:@&quot;&quot;]]]">
+            </PersistentString>
+            <PersistentString
+               value = "[NSString stringWithFormat:@&quot;%@&quot;, [self.floorPlan.relatedFile stringByReplacingOccurrencesOfString:@&quot;.pdf&quot; withString:@&quot;&quot;]]">
+            </PersistentString>
+            <PersistentString
+               value = "generatedHeatImage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SCHeatMapViewController generateHeatMapforSensorType:]:SCHeatMapViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[sensorPoint time]">
+            </PersistentString>
+            <PersistentString
+               value = "[point.sensorPoints allObjects]">
+            </PersistentString>
+            <PersistentString
+               value = "dt">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -13,6 +13,7 @@
 #define SCHeatMapSettingsResolution     @"SCHeatMapSettingsResolution"
 #define SCHeatMapSettingsType           @"SCHeatMapSettingsType"
 #define SCHeatMapSettingsValue          @"SCHeatMapSettingsValue"
+#define SCHeatMapSettingsTime           @"SCHeatMapSettingsTime"
 
 typedef enum {
     SCHeatMapTypeSensor = 0,

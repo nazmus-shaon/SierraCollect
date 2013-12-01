@@ -7,6 +7,7 @@
 //
 
 #import "SCOverviewViewController.h"
+#import "PDFPageConverter.h"
 
 @interface SCOverviewViewController ()
 
@@ -40,8 +41,18 @@ NSString *kCellID = @"cellID";
     //NSLog(@"%@",[[storedPDFs objectAtIndex:indexPath.row] relatedFile]);
     SCPdfPreviewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
     cell.headlineLabel.text = [NSString stringWithFormat:@"%@", [[storedPDFs objectAtIndex:indexPath.row] name]];
-    [cell.previewImage setImage:[[storedPDFs objectAtIndex:indexPath.row] getSmallPreviewImage]];
+    //[cell.previewImage setImage:[[storedPDFs objectAtIndex:indexPath.row] getSmallPreviewImage]];
     
+    // Use different library to convert pdf to image, to reduce memory leak - sakib
+    NSString *fn = [[[storedPDFs objectAtIndex:indexPath.row] relatedFile] stringByReplacingOccurrencesOfString:@".pdf" withString:@""];
+    NSString *fileLocation = [[NSBundle mainBundle] pathForResource:fn ofType:@"pdf"];
+    //file ref
+    CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL((__bridge CFURLRef)([ NSURL fileURLWithPath:fileLocation]));
+    CGPDFPageRef page = CGPDFDocumentGetPage(pdf, 1);
+    [cell.previewImage setImage:[PDFPageConverter convertPDFPageToImage:page withResolution:72]];
+    CGPDFDocumentRelease(pdf);
+    ////
+
     return cell;
 }
 
@@ -51,7 +62,7 @@ NSString *kCellID = @"cellID";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
     SCDetailViewController *cont = [storyboard instantiateViewControllerWithIdentifier:@"detailController" ];
     cont.floorPlan = [storedPDFs objectAtIndex:indexPath.row];
-    
+
     [self.navigationController pushViewController:cont animated:YES];
     
 }

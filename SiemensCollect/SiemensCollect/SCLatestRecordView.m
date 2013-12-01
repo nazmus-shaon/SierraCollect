@@ -7,8 +7,11 @@
 //
 
 #import "SCLatestRecordView.h"
+#import "PDFPageConverter.h"
 
-@implementation SCLatestRecordView
+@implementation SCLatestRecordView{
+    UIImage *img;
+}
 
 
 
@@ -17,7 +20,6 @@
     [self setBackgroundColor:[UIColor clearColor]];
 
     if (self) {
-        
         UIView *holderView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, frame.size.width-20, frame.size.height-20)];
         [holderView setBackgroundColor:[UIColor clearColor]];
         [holderView.layer setCornerRadius:8];
@@ -44,24 +46,54 @@
         
         //320
         
-        //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, titleLabel.frame.size.height, frame.size.width, 300)];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[floorplan getImageforWidth:holderView.frame.size.width]];
-        [imageView setBackgroundColor:[UIColor clearColor]];
-        [imageView setFrame:CGRectMake(0, titleLabel.frame.size.height, imageView.frame.size.width, imageView.frame.size.height)];
-        [imageView setBackgroundColor:[UIColor clearColor]];
-        [holderView addSubview:imageView];
+        //sakib - Different approaches to try to fix the memory leak 
+        /*UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, titleLabel.frame.size.height, frame.size.width, 300)];
+        NSString *fn = [floorplan.relatedFile stringByReplacingOccurrencesOfString:@".pdf" withString:@""];
+        NSString *fileLocation = [[NSBundle mainBundle] pathForResource:fn ofType:@"png"];
+        img = [UIImage imageWithContentsOfFile:fileLocation];
+        //img = [UIImage imageWithContentsOfFile:fn];
+        //img = [UIImage imageWithCGImage:img.CGImage scale:0.1 orientation:img.imageOrientation];*/
+        //img = [floorplan getImageforWidth:button.frame.size.width];
+        //[button setBackgroundImage:img forState:UIControlStateNormal];
         
-        UIView *singelLineBottom = [[UIView alloc] initWithFrame:CGRectMake(0, imageView.frame.size.height + 49, holderView.frame.size.width, 1)];
+        NSString *fn = [floorplan.relatedFile stringByReplacingOccurrencesOfString:@".pdf" withString:@""];
+        NSString *fileLocation = [[NSBundle mainBundle] pathForResource:fn ofType:@"pdf"];
+        //file ref
+        CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL((__bridge CFURLRef)([ NSURL fileURLWithPath:fileLocation]));
+        CGPDFPageRef page = CGPDFDocumentGetPage(pdf, 1);
+        img = [PDFPageConverter convertPDFPageToImage:page withResolution:72];
+        //CGPDFPageRelease(page);
+        CGPDFDocumentRelease(pdf);
+        
+        //img = [floorplan getImageforWidth:holderView.frame.size.width];
+        /*UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
+        [imageView setBackgroundColor:[UIColor clearColor]];
+        [imageView setFrame:CGRectMake(0, titleLabel.frame.size.height, holderView.frame.size.width, 400)];
+        [imageView setBackgroundColor:[UIColor clearColor]];
+        [holderView addSubview:imageView];*/
+        //CGImageRelease([img CGImage]); // this might fix the memeory leak, but the link no longer works, also look inside the getImageforWidth function
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button addTarget:self
+                   action:@selector(floorPlanClicked)
+         forControlEvents:UIControlEventTouchDown];
+        //[button setTitle:@"Show View" forState:UIControlStateNormal];
+        button.frame = CGRectMake(0, titleLabel.frame.size.height, holderView.frame.size.width, holderView.frame.size.height -125);
+        [button setBackgroundImage:img forState:UIControlStateNormal];
+        [holderView addSubview:button];
+        
+        
+        UIView *singelLineBottom = [[UIView alloc] initWithFrame:CGRectMake(0, button.frame.size.height + 49, holderView.frame.size.width, 1)];
         [singelLineBottom setBackgroundColor:[UIColor darkGrayColor]];
         [holderView addSubview:singelLineBottom];
         
-        UIView *infoView = [[UIView alloc] initWithFrame:CGRectMake(0, imageView.frame.size.height + 50, frame.size.width, 85)];
+        UIView *infoView = [[UIView alloc] initWithFrame:CGRectMake(0, button.frame.size.height + 50, frame.size.width, 85)];
         [infoView setBackgroundColor:[UIColor lightGrayColor]];
         [holderView addSubview:infoView];
         
         UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, infoView.frame.size.width-40, 20)];
         [infoLabel setBackgroundColor:[UIColor clearColor]];
-        [infoLabel setText:[NSString stringWithFormat:@"Building: %@ - %@ - %i", floorplan.building.city.name, floorplan.building.name, floorplan.building.number.intValue]];
+        [infoLabel setText:[NSString stringWithFormat:@"Building: %@ - %@ - %i", floorplan.building.area.city.name, floorplan.building.name, floorplan.building.number.intValue]];
         [infoLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:13]];
         [infoLabel setTextColor:[UIColor whiteColor]];
         [infoLabel setTextAlignment:NSTextAlignmentCenter];
@@ -91,11 +123,13 @@
         [infoView addSubview:infoLabel3];
         
         
-        
+        //Replaced the following part with button above
+        /*
         UIControl *overlayCtrl = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, holderView.frame.size.width, holderView.frame.size.height)];
         [overlayCtrl addTarget:self action:@selector(floorPlanClicked) forControlEvents:UIControlEventTouchUpInside];
         [overlayCtrl setBackgroundColor:[UIColor clearColor]];
-        [holderView addSubview:overlayCtrl];
+        [holderView addSubview:overlayCtrl];*/
+        
         
     }
     return self;
@@ -104,6 +138,7 @@
 
 - (void)floorPlanClicked {
     [self.delegate didClickOnFloorplan:plan];
+
 }
 
 
