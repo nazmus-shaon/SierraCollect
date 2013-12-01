@@ -479,8 +479,10 @@
             dateAlreadyAdded = NO;
         }
     }
-    
-    [arrDate sortUsingSelector:@selector(compare:)];
+
+    //[arrDate sortUsingSelector:@selector(compare:)];
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:nil ascending:NO selector:@selector(compare:)];
+    [arrDate sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
     /*NSDate *currDate = [NSDate date];
     [arrDate addObject:currDate];
